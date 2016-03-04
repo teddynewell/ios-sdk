@@ -26,7 +26,7 @@ class DialogTests: XCTestCase {
 
     // the Dialog application that will be created for testing
     let dialogName = "pizza-watsonsdk-ios"
-    var dialogID: Dialog.DialogID!
+    var dialogID: String!
     
     // the Dialog file that will be used to create the application
     let dialogFileName = "pizza_sample"
@@ -346,7 +346,7 @@ class DialogTests: XCTestCase {
         let expectation = expectationWithDescription(description)
         
         // define the updates to the initial node
-        let nodes = [Dialog.Node(content: initialResponse, node: initialNode)]
+        let nodes = [DialogNode(content: initialResponse, node: initialNode)]
         
         // update the initial node
         service.updateContent(dialogID, nodes: nodes) { error in
@@ -626,7 +626,7 @@ class DialogTests: XCTestCase {
         let expectation = expectationWithDescription(description)
         
         // define the updates to the initial node
-        let nodes = [Dialog.Node(content: initialResponse, node: initialNode)]
+        let nodes = [DialogNode(content: initialResponse, node: initialNode)]
         
         // update the initial node
         service.updateContent(invalidDialogID, nodes: nodes) { error in
@@ -648,7 +648,7 @@ class DialogTests: XCTestCase {
         let expectation = expectationWithDescription(description)
         
         // define an empty node
-        let nodes = [Dialog.Node(content: initialNode, node: initialResponse)]
+        let nodes = [DialogNode(content: initialNode, node: initialResponse)]
         
         // update the node
         service.updateContent(dialogID, nodes: nodes) { error in
