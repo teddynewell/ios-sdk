@@ -16,9 +16,9 @@
 
 import Foundation
 import ObjectMapper
-    
+
 /// A translation model
-public struct LanguageTranslationModel: Mappable {
+public struct LTModel: Mappable {
     
     /// If this model is a custom model, this returns the base model that it is trained on. For a base model, this response value is empty.
     public var baseModelID: String?

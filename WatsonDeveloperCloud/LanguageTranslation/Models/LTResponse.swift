@@ -17,7 +17,7 @@
 import Foundation
 import ObjectMapper
     
-struct Translation: Mappable {
+struct LTTranslation: Mappable {
     var translation: String?
 
     /// Used internally to initialize a `Translation` from JSON.
@@ -29,10 +29,10 @@ struct Translation: Mappable {
     }
 }
 
-struct LanguageTranslationResponse: Mappable {
+struct LTResponse: Mappable {
     var wordCount: Int?
     var characterCount: Int?
-    var translations: [Translation]?
+    var translations: [LTTranslation]?
     var translationStrings: [String]? {
         if let translations = translations {
             var strings = [String]()

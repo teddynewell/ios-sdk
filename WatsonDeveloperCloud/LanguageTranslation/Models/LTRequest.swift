@@ -18,7 +18,7 @@ import Foundation
 import ObjectMapper
     
 /// A translation request
-struct LanguageTranslationRequest: Mappable {
+struct LTRequest: Mappable {
     var modelID: String?
     var source: String?
     var target: String?

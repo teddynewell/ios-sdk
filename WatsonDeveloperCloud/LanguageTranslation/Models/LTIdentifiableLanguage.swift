@@ -18,7 +18,7 @@ import Foundation
 import ObjectMapper
 
 /// An identifiable language
-public struct LanguageTranslationIdentifiableLanguage: Mappable {
+public struct LTIdentifiableLanguage: Mappable {
     
     /// The language
     public var language:String?

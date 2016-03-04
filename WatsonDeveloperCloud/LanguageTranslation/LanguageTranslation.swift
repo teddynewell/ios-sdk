@@ -50,7 +50,7 @@ public class LanguageTranslation: WatsonService {
                                         identifiable languages
      */
     public func getIdentifiableLanguages(
-        completionHandler: ([LanguageTranslationIdentifiableLanguage]?, NSError?) -> Void) {
+        completionHandler: ([LTIdentifiableLanguage]?, NSError?) -> Void) {
         
         // construct request
         let request = WatsonRequest(
@@ -62,7 +62,7 @@ public class LanguageTranslation: WatsonService {
         
         // execute request
         gateway.request(request, serviceError: LanguageTranslationError()) { data, error in
-            let languages = Mapper<LanguageTranslationIdentifiableLanguage>().mapDataArray(data,
+            let languages = Mapper<LTIdentifiableLanguage>().mapDataArray(data,
                 keyPath: "languages")
             completionHandler(languages, error)
         }
@@ -77,7 +77,7 @@ public class LanguageTranslation: WatsonService {
                                         confidence
      */
     public func identify(text: String,
-        completionHandler: ([LanguageTranslationIdentifiedLanguage]?, NSError?) -> Void) {
+        completionHandler: ([LTIdentifiedLanguage]?, NSError?) -> Void) {
             
         // construct request
         let request = WatsonRequest(
@@ -90,7 +90,7 @@ public class LanguageTranslation: WatsonService {
         
         // execute request
         gateway.request(request, serviceError: LanguageTranslationError()) { data, error in
-            let languages = Mapper<LanguageTranslationIdentifiedLanguage>().mapDataArray(data,
+            let languages = Mapper<LTIdentifiedLanguage>().mapDataArray(data,
                 keyPath: "languages")
             completionHandler(languages, error)
         }
@@ -108,7 +108,7 @@ public class LanguageTranslation: WatsonService {
     public func translate(text: String, source: String, target: String,
         completionHandler: (String?, NSError?) -> Void) {
             
-        translate(LanguageTranslationRequest(text: [text], source: source, target: target)) {
+        translate(LTRequest(text: [text], source: source, target: target)) {
             text, error in
             guard let text = text else {
                 completionHandler(nil, error)
@@ -134,7 +134,7 @@ public class LanguageTranslation: WatsonService {
     public func translate(text: String, modelID: String,
         completionHandler: (String?, NSError?) -> Void) {
             
-        translate(LanguageTranslationRequest(text: [text], modelID: modelID)) {
+        translate(LTRequest(text: [text], modelID: modelID)) {
             text, error in
             guard let text = text else {
                 completionHandler(nil, error)
@@ -160,7 +160,7 @@ public class LanguageTranslation: WatsonService {
     public func translate(text: [String], source: String, target: String,
         completionHandler: ([String]?, NSError?) -> Void) {
         
-        translate(LanguageTranslationRequest(text: text, source: source, target: target),
+        translate(LTRequest(text: text, source: source, target: target),
             completionHandler: completionHandler)
     }
     
@@ -176,7 +176,7 @@ public class LanguageTranslation: WatsonService {
     public func translate(text: [String], modelID: String,
         completionHandler: ([String]?, NSError?) -> Void) {
         
-        translate(LanguageTranslationRequest(text: text, modelID: modelID),
+        translate(LTRequest(text: text, modelID: modelID),
             completionHandler: completionHandler)
     }
     
@@ -187,7 +187,7 @@ public class LanguageTranslation: WatsonService {
      - parameter completionHandler: The callback method that is invoked with the
                                         translated strings.
      */
-    private func translate(translateRequest: LanguageTranslationRequest,
+    private func translate(translateRequest: LTRequest,
         completionHandler: ([String]?, NSError?) -> Void) {
         
         // construct request
@@ -202,7 +202,7 @@ public class LanguageTranslation: WatsonService {
         
         // execute request
         gateway.request(request, serviceError: LanguageTranslationError()) { data, error in
-            let translations = Mapper<LanguageTranslationResponse>().mapData(data)?.translationStrings
+            let translations = Mapper<LTResponse>().mapData(data)?.translationStrings
             completionHandler(translations, error)
         }
     }
@@ -219,7 +219,7 @@ public class LanguageTranslation: WatsonService {
         source: String? = nil,
         target: String? = nil,
         defaultModel: Bool? = nil,
-        completionHandler: ([LanguageTranslationModel]?, NSError?) -> Void)
+        completionHandler: ([LTModel]?, NSError?) -> Void)
     {
         // construct url query parameters
         var urlParams = [NSURLQueryItem]()
@@ -244,7 +244,7 @@ public class LanguageTranslation: WatsonService {
             
         // execute request
         gateway.request(request, serviceError: LanguageTranslationError()) { data, error in
-            let models = Mapper<LanguageTranslationModel>().mapDataArray(data, keyPath: "models")
+            let models = Mapper<LTModel>().mapDataArray(data, keyPath: "models")
             completionHandler(models, error)
         }
     }
@@ -256,7 +256,7 @@ public class LanguageTranslation: WatsonService {
      - parameter completionHandler: The callback method to invoke after the response is received
      */
     public func getModel(modelID: String,
-        completionHandler: (LanguageTranslationModel?, NSError?) -> Void) {
+        completionHandler: (LTModel?, NSError?) -> Void) {
         
         // construct request
         let request = WatsonRequest(
@@ -268,7 +268,7 @@ public class LanguageTranslation: WatsonService {
         
         // execute request
         gateway.request(request, serviceError: LanguageTranslationError()) { data, error in
-            let model = Mapper<LanguageTranslationModel>().mapData(data)
+            let model = Mapper<LTModel>().mapData(data)
             completionHandler(model, error)
         }
     }
@@ -327,9 +327,9 @@ public class LanguageTranslation: WatsonService {
                     case .Success(let upload, _, _):
                         // execute encoded request
                         upload.responseObject {
-                            (response: Response<LanguageTranslationCustomModel, NSError>) in
+                            (response: Response<LTCustomModel, NSError>) in
                             let unwrapID = {
-                                (customModel: LanguageTranslationCustomModel?, error: NSError?) in
+                                (customModel: LTCustomModel?, error: NSError?) in
                                 completionHandler(customModel?.modelID, error) }
                             print(response)
                             validate(response, serviceError: LanguageTranslationError(),

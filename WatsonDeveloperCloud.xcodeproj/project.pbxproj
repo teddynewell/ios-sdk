@@ -64,12 +64,12 @@
 		7A0F96BD1C232B96004C01C0 /* LanguageTranslation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96131C232B96004C01C0 /* LanguageTranslation.swift */; };
 		7A0F96BE1C232B96004C01C0 /* LanguageTranslationConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96141C232B96004C01C0 /* LanguageTranslationConstants.swift */; };
 		7A0F96BF1C232B96004C01C0 /* LanguageTranslationError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96151C232B96004C01C0 /* LanguageTranslationError.swift */; };
-		7A0F96C01C232B96004C01C0 /* LanguageTranslationCustomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96171C232B96004C01C0 /* LanguageTranslationCustomModel.swift */; };
-		7A0F96C11C232B96004C01C0 /* LanguageTranslationIdentifiableLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96181C232B96004C01C0 /* LanguageTranslationIdentifiableLanguage.swift */; };
-		7A0F96C21C232B96004C01C0 /* LanguageTranslationIdentifiedLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96191C232B96004C01C0 /* LanguageTranslationIdentifiedLanguage.swift */; };
-		7A0F96C31C232B96004C01C0 /* LanguageTranslationRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F961A1C232B96004C01C0 /* LanguageTranslationRequest.swift */; };
-		7A0F96C41C232B96004C01C0 /* LanguageTranslationResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F961B1C232B96004C01C0 /* LanguageTranslationResponse.swift */; };
-		7A0F96C51C232B96004C01C0 /* LanguageTranslationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F961C1C232B96004C01C0 /* LanguageTranslationModel.swift */; };
+		7A0F96C01C232B96004C01C0 /* LTCustomModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96171C232B96004C01C0 /* LTCustomModel.swift */; };
+		7A0F96C11C232B96004C01C0 /* LTIdentifiableLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96181C232B96004C01C0 /* LTIdentifiableLanguage.swift */; };
+		7A0F96C21C232B96004C01C0 /* LTIdentifiedLanguage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96191C232B96004C01C0 /* LTIdentifiedLanguage.swift */; };
+		7A0F96C31C232B96004C01C0 /* LTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F961A1C232B96004C01C0 /* LTRequest.swift */; };
+		7A0F96C41C232B96004C01C0 /* LTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F961B1C232B96004C01C0 /* LTResponse.swift */; };
+		7A0F96C51C232B96004C01C0 /* LTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F961C1C232B96004C01C0 /* LTModel.swift */; };
 		7A0F96C81C232B96004C01C0 /* Classification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96221C232B96004C01C0 /* Classification.swift */; };
 		7A0F96C91C232B96004C01C0 /* ClassifiedClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96231C232B96004C01C0 /* ClassifiedClass.swift */; };
 		7A0F96CA1C232B96004C01C0 /* Classifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96241C232B96004C01C0 /* Classifier.swift */; };
@@ -277,12 +277,12 @@
 		7A0F96131C232B96004C01C0 /* LanguageTranslation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslation.swift; sourceTree = "<group>"; };
 		7A0F96141C232B96004C01C0 /* LanguageTranslationConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationConstants.swift; sourceTree = "<group>"; };
 		7A0F96151C232B96004C01C0 /* LanguageTranslationError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationError.swift; sourceTree = "<group>"; };
-		7A0F96171C232B96004C01C0 /* LanguageTranslationCustomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationCustomModel.swift; sourceTree = "<group>"; };
-		7A0F96181C232B96004C01C0 /* LanguageTranslationIdentifiableLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationIdentifiableLanguage.swift; sourceTree = "<group>"; };
-		7A0F96191C232B96004C01C0 /* LanguageTranslationIdentifiedLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationIdentifiedLanguage.swift; sourceTree = "<group>"; };
-		7A0F961A1C232B96004C01C0 /* LanguageTranslationRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationRequest.swift; sourceTree = "<group>"; };
-		7A0F961B1C232B96004C01C0 /* LanguageTranslationResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationResponse.swift; sourceTree = "<group>"; };
-		7A0F961C1C232B96004C01C0 /* LanguageTranslationModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationModel.swift; sourceTree = "<group>"; };
+		7A0F96171C232B96004C01C0 /* LTCustomModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTCustomModel.swift; sourceTree = "<group>"; };
+		7A0F96181C232B96004C01C0 /* LTIdentifiableLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTIdentifiableLanguage.swift; sourceTree = "<group>"; };
+		7A0F96191C232B96004C01C0 /* LTIdentifiedLanguage.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTIdentifiedLanguage.swift; sourceTree = "<group>"; };
+		7A0F961A1C232B96004C01C0 /* LTRequest.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTRequest.swift; sourceTree = "<group>"; };
+		7A0F961B1C232B96004C01C0 /* LTResponse.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTResponse.swift; sourceTree = "<group>"; };
+		7A0F961C1C232B96004C01C0 /* LTModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTModel.swift; sourceTree = "<group>"; };
 		7A0F961E1C232B96004C01C0 /* glossary.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = glossary.tmx; sourceTree = "<group>"; };
 		7A0F961F1C232B96004C01C0 /* LanguageTranslationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationTests.swift; sourceTree = "<group>"; };
 		7A0F96221C232B96004C01C0 /* Classification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classification.swift; sourceTree = "<group>"; };
@@ -607,12 +607,12 @@
 		7A0F96161C232B96004C01C0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7A0F96171C232B96004C01C0 /* LanguageTranslationCustomModel.swift */,
-				7A0F96181C232B96004C01C0 /* LanguageTranslationIdentifiableLanguage.swift */,
-				7A0F96191C232B96004C01C0 /* LanguageTranslationIdentifiedLanguage.swift */,
-				7A0F961A1C232B96004C01C0 /* LanguageTranslationRequest.swift */,
-				7A0F961B1C232B96004C01C0 /* LanguageTranslationResponse.swift */,
-				7A0F961C1C232B96004C01C0 /* LanguageTranslationModel.swift */,
+				7A0F96171C232B96004C01C0 /* LTCustomModel.swift */,
+				7A0F96181C232B96004C01C0 /* LTIdentifiableLanguage.swift */,
+				7A0F96191C232B96004C01C0 /* LTIdentifiedLanguage.swift */,
+				7A0F961A1C232B96004C01C0 /* LTRequest.swift */,
+				7A0F961B1C232B96004C01C0 /* LTResponse.swift */,
+				7A0F961C1C232B96004C01C0 /* LTModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1077,9 +1077,9 @@
 				7A0F96861C232B96004C01C0 /* AlchemyLanguageGenericModel.swift in Sources */,
 				7A0F96C81C232B96004C01C0 /* Classification.swift in Sources */,
 				7A0F96AD1C232B96004C01C0 /* ImageURL.swift in Sources */,
-				7A0F96C21C232B96004C01C0 /* LanguageTranslationIdentifiedLanguage.swift in Sources */,
+				7A0F96C21C232B96004C01C0 /* LTIdentifiedLanguage.swift in Sources */,
 				7A0F96A01C232B96004C01C0 /* Taxonomies.swift in Sources */,
-				7A0F96C11C232B96004C01C0 /* LanguageTranslationIdentifiableLanguage.swift in Sources */,
+				7A0F96C11C232B96004C01C0 /* LTIdentifiableLanguage.swift in Sources */,
 				7A0F97021C232B96004C01C0 /* FacebookAuthenticationStrategy.swift in Sources */,
 				7A0F96BF1C232B96004C01C0 /* LanguageTranslationError.swift in Sources */,
 				7ACB0D481C878D1200861CCC /* SpeechToTextKeywordResult.swift in Sources */,
@@ -1119,13 +1119,13 @@
 				7A0F96D61C232B96004C01C0 /* PersonalityInsightsConstants.swift in Sources */,
 				7AAD77591C87982400983861 /* SpeechToTextWebSocket.swift in Sources */,
 				7A0F96881C232B96004C01C0 /* CombinedResults.swift in Sources */,
-				7A0F96C01C232B96004C01C0 /* LanguageTranslationCustomModel.swift in Sources */,
+				7A0F96C01C232B96004C01C0 /* LTCustomModel.swift in Sources */,
 				7A0F96841C232B96004C01C0 /* AlchemyLanguageParametersProtocol.swift in Sources */,
 				7A0F969C1C232B96004C01C0 /* SAORelation.swift in Sources */,
 				7A0F96931C232B96004C01C0 /* Feeds.swift in Sources */,
-				7A0F96C41C232B96004C01C0 /* LanguageTranslationResponse.swift in Sources */,
+				7A0F96C41C232B96004C01C0 /* LTResponse.swift in Sources */,
 				7A0F96A81C232B96004C01C0 /* ImageFace.swift in Sources */,
-				7A0F96C51C232B96004C01C0 /* LanguageTranslationModel.swift in Sources */,
+				7A0F96C51C232B96004C01C0 /* LTModel.swift in Sources */,
 				7A0F96D21C232B96004C01C0 /* ContentItem.swift in Sources */,
 				7A0F96B41C232B96004C01C0 /* DialogError.swift in Sources */,
 				7A0F96B61C232B96004C01C0 /* DialogConversationResponse.swift in Sources */,
@@ -1133,7 +1133,7 @@
 				7A0F96FB1C232B96004C01C0 /* TextToSpeechConstants.swift in Sources */,
 				7A0F96961C232B96004C01C0 /* KnowledgeGraph.swift in Sources */,
 				7A0F96A91C232B96004C01C0 /* ImageFaceTags.swift in Sources */,
-				7A0F96C31C232B96004C01C0 /* LanguageTranslationRequest.swift in Sources */,
+				7A0F96C31C232B96004C01C0 /* LTRequest.swift in Sources */,
 				7A0F96941C232B96004C01C0 /* Keyword.swift in Sources */,
 				7A521F5A1C857361005EFD34 /* SpeechToTextError.swift in Sources */,
 				7A0F96D41C232B96004C01C0 /* Trait.swift in Sources */,

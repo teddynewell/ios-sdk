@@ -18,7 +18,7 @@ import Foundation
 import ObjectMapper
     
 /// A Language Translation custom model
-public struct LanguageTranslationCustomModel: Mappable {
+public struct LTCustomModel: Mappable {
 
     /// The base model that this translation model was trained on
     public var modelID: String?
