@@ -15,32 +15,29 @@
  **/
 
 import Foundation
-
-extension Dialog {
     
-    internal struct Constants {
-        
-        static let serviceURL = "https://gateway.watsonplatform.net/dialog/api"
-        static let tokenURL = "https://gateway.watsonplatform.net/authorization/api/v1/token"
-        static let errorDoman = "com.watsonplatform.dialog"
-        
-        // MARK: Content Operations
-        static func content(dialogID: DialogID) -> String {
-            return "/v1/dialogs/\(dialogID)/content"
-        }
-        static let dialogs = "/v1/dialogs"
-        static func dialogID(dialogID: DialogID) -> String {
-            return "/v1/dialogs/\(dialogID)"
-        }
-        
-        // MARK: Conversation Operations
-        static func conversation(dialogID: DialogID) -> String {
-            return "/v1/dialogs/\(dialogID)/conversation"
-        }
-        
-        // MARK: Profile Opeations
-        static func profile(dialogID: DialogID) -> String {
-            return "/v1/dialogs/\(dialogID)/profile"
-        }
+struct DialogConstants {
+    
+    static let serviceURL = "https://gateway.watsonplatform.net/dialog/api"
+    static let tokenURL = "https://gateway.watsonplatform.net/authorization/api/v1/token"
+    static let domain = "com.watsonplatform.dialog"
+    
+    // MARK: Content Operations
+    static func content(dialogID: String) -> String {
+        return "/v1/dialogs/\(dialogID)/content"
+    }
+    static let dialogs = "/v1/dialogs"
+    static func dialogID(dialogID: String) -> String {
+        return "/v1/dialogs/\(dialogID)"
+    }
+    
+    // MARK: Conversation Operations
+    static func conversation(dialogID: String) -> String {
+        return "/v1/dialogs/\(dialogID)/conversation"
+    }
+    
+    // MARK: Profile Opeations
+    static func profile(dialogID: String) -> String {
+        return "/v1/dialogs/\(dialogID)/profile"
     }
 }

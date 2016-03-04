@@ -16,87 +16,84 @@
 
 import Foundation
 import ObjectMapper
-
-extension Dialog {
     
-    /// A Dialog conversation
-    public struct Conversation: Mappable {
+/// A Dialog conversation
+public struct DialogConversation: Mappable {
 
-        /// The nodes that were executed by the conversation
-        var hitNodes: [HitNode]?
-        
-        /// The conversation identifier
-        var conversationID: Int?
-        
-        /// The client identifier
-        var clientID: Int?
-        
-        /// The messages exchanged during the conversation
-        var messages: [Message]?
-        
-        /// The profile variables associated with the conversation
-        var profile: [String: String]?
+    /// The nodes that were executed by the conversation
+    var hitNodes: [DialogHitNode]?
+    
+    /// The conversation identifier
+    var conversationID: Int?
+    
+    /// The client identifier
+    var clientID: Int?
+    
+    /// The messages exchanged during the conversation
+    var messages: [DialogMessage]?
+    
+    /// The profile variables associated with the conversation
+    var profile: [String: String]?
 
-        /// Used internally to initialize a `Conversation` from JSON.
-        public init?(_ map: Map) {}
+    /// Used internally to initialize a `Conversation` from JSON.
+    public init?(_ map: Map) {}
 
-        /// Used internally to serialize and deserialize JSON.
-        mutating public func mapping(map: Map) {
-            hitNodes       <- map["hit_nodes"]
-            conversationID <- map["conversation_id"]
-            clientID       <- map["client_id"]
-            messages       <- map["messages"]
-            profile        <- map["profile"]
-        }
+    /// Used internally to serialize and deserialize JSON.
+    mutating public func mapping(map: Map) {
+        hitNodes       <- map["hit_nodes"]
+        conversationID <- map["conversation_id"]
+        clientID       <- map["client_id"]
+        messages       <- map["messages"]
+        profile        <- map["profile"]
     }
+}
     
-    /// A Dialog hit node
-    public struct HitNode: Mappable {
-        
-        /// The details of the node
-        var details: String?
-        
-        /// The label of the node
-        var label: String?
-        
-        /// The type of the node
-        var type: String?
-        
-        /// The node identifier
-        var nodeID: Int?
+/// A Dialog hit node
+public struct DialogHitNode: Mappable {
+    
+    /// The details of the node
+    var details: String?
+    
+    /// The label of the node
+    var label: String?
+    
+    /// The type of the node
+    var type: String?
+    
+    /// The node identifier
+    var nodeID: Int?
 
-        /// Used internally to initialize a `HitNode` from JSON.
-        public init?(_ map: Map) {}
+    /// Used internally to initialize a `HitNode` from JSON.
+    public init?(_ map: Map) {}
 
-        /// Used internally to serialize and deserialize JSON.
-        mutating public func mapping(map: Map) {
-            details <- map["details"]
-            label   <- map["label"]
-            type    <- map["type"]
-            nodeID  <- map["node_id"]
-        }
+    /// Used internally to serialize and deserialize JSON.
+    mutating public func mapping(map: Map) {
+        details <- map["details"]
+        label   <- map["label"]
+        type    <- map["type"]
+        nodeID  <- map["node_id"]
     }
+}
     
-    /// A Dialog message
-    public struct Message: Mappable {
-        
-        /// The text of the message
-        var text: String?
-        
-        /// The date and time of the message
-        var dateTime: NSDate?
-        
-        /// The client that prompted the message to be sent
-        var fromClient: String?
+/// A Dialog message
+public struct DialogMessage: Mappable {
+    
+    /// The text of the message
+    var text: String?
+    
+    /// The date and time of the message
+    var dateTime: NSDate?
+    
+    /// The client that prompted the message to be sent
+    var fromClient: String?
 
-        /// Used internally to initialize a `Message` from JSON.
-        public init?(_ map: Map) {}
+    /// Used internally to initialize a `Message` from JSON.
+    public init?(_ map: Map) {}
 
-        /// Used internally to serialize and deserialize JSON.
-        mutating public func mapping(map: Map) {
-            text       <-  map["text"]
-            dateTime   <- (map["date_time"], ISO8601DateTransform())
-            fromClient <-  map["from_client"]
-        }
+    /// Used internally to serialize and deserialize JSON.
+    mutating public func mapping(map: Map) {
+        text       <-  map["text"]
+        dateTime   <- (map["date_time"], ISO8601DateTransform())
+        fromClient <-  map["from_client"]
     }
 }

@@ -15,16 +15,15 @@
  **/
 
 import Foundation
-
-extension Dialog {
     
-    /// Supported Dialog file formats
-    public enum DialogFormat: String {
-        
-        case OctetStream = "application/octet-stream"
-        case WDSJSON = "application/wds+json"
-        case WDSXML = "application/wds+xml"
-        
-        var mediaType: MediaType { return MediaType(rawValue: rawValue)! }
+/// Supported Dialog file formats
+public enum DialogFormat: String {
+    
+    case OctetStream = "application/octet-stream"
+    case WDSJSON = "application/wds+json"
+    case WDSXML = "application/wds+xml"
+    
+    var mediaType: MediaType {
+        return MediaType(rawValue: rawValue)!
     }
 }

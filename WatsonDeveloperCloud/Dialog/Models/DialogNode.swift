@@ -16,30 +16,27 @@
 
 import Foundation
 import ObjectMapper
-
-extension Dialog {
     
-    /// A Dialog node
-    public struct Node: Mappable {
-        
-        /// The content associated with the node
-        public var content: String?
-        
-        /// The type of the node
-        public var node: String?
-        
-        init(content: String? = nil, node: String? = nil) {
-            self.content = content
-            self.node = node
-        }
+/// A Dialog node
+public struct DialogNode: Mappable {
+    
+    /// The content associated with the node
+    public var content: String?
+    
+    /// The type of the node
+    public var node: String?
+    
+    init(content: String? = nil, node: String? = nil) {
+        self.content = content
+        self.node = node
+    }
 
-        /// Used internally to initialize a `Node` from JSON.
-        public init?(_ map: Map) {}
+    /// Used internally to initialize a `Node` from JSON.
+    public init?(_ map: Map) {}
 
-        /// Used internally to serialize and deserialize JSON.
-        public mutating func mapping(map: Map) {
-            content <- map["content"]
-            node    <- map["node"]
-        }
+    /// Used internally to serialize and deserialize JSON.
+    public mutating func mapping(map: Map) {
+        content <- map["content"]
+        node    <- map["node"]
     }
 }

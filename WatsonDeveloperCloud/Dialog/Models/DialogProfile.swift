@@ -16,61 +16,58 @@
 
 import Foundation
 import ObjectMapper
-
-extension Dialog {
     
-    /// A Dialog profile
-    public struct Profile: Mappable {
-        
-        /// The client identifier
-        public var clientID: Int?
-        
-        /// The parameters of the profile
-        public var parameters: [Parameter]?
-        
-        public init(clientID: Int? = nil, parameters: [String: String]? = nil) {
-            self.clientID = clientID
-            if let parameters = parameters {
-                var params = [Parameter]()
-                for p in parameters {
-                    let parameter = Parameter(name: p.0, value: p.1)
-                    params.append(parameter)
-                }
-                self.parameters = params
+/// A Dialog profile
+public struct DialogProfile: Mappable {
+    
+    /// The client identifier
+    public var clientID: Int?
+    
+    /// The parameters of the profile
+    public var parameters: [DialogParameter]?
+    
+    public init(clientID: Int? = nil, parameters: [String: String]? = nil) {
+        self.clientID = clientID
+        if let parameters = parameters {
+            var params = [DialogParameter]()
+            for p in parameters {
+                let parameter = DialogParameter(name: p.0, value: p.1)
+                params.append(parameter)
             }
-        }
-
-        /// Used internally to initialize a `Profile` from JSON.
-        public init?(_: Map) {}
-
-        /// Used internally to serialize and deserialize JSON.
-        mutating public func mapping(map: Map) {
-            clientID   <- map["client_id"]
-            parameters <- map["name_values"]
+            self.parameters = params
         }
     }
+
+    /// Used internally to initialize a `Profile` from JSON.
+    public init?(_: Map) {}
+
+    /// Used internally to serialize and deserialize JSON.
+    mutating public func mapping(map: Map) {
+        clientID   <- map["client_id"]
+        parameters <- map["name_values"]
+    }
+}
+
+/// A Dialog parameter
+public struct DialogParameter: Mappable {
     
-    /// A Dialog parameter
-    public struct Parameter: Mappable {
-        
-        /// The name of the parameter
-        public var name: String?
-        
-        /// The value of the parameter
-        public var value: String?
-        
-        public init(name: String? = nil, value: String? = nil) {
-            self.name = name
-            self.value = value
-        }
+    /// The name of the parameter
+    public var name: String?
+    
+    /// The value of the parameter
+    public var value: String?
+    
+    public init(name: String? = nil, value: String? = nil) {
+        self.name = name
+        self.value = value
+    }
 
-        /// Used internally to initialize a `Parameter` from JSON.
-        public init?(_: Map) {}
+    /// Used internally to initialize a `Parameter` from JSON.
+    public init?(_: Map) {}
 
-        /// Used internally to serialize and deserialize JSON.
-        mutating public func mapping(map: Map) {
-            value <- map["value"]
-            name  <- map["name"]
-        }
+    /// Used internally to serialize and deserialize JSON.
+    mutating public func mapping(map: Map) {
+        value <- map["value"]
+        name  <- map["name"]
     }
 }

@@ -39,8 +39,11 @@ public class Dialog: WatsonService {
 
     // TODO: comment this initializer
     public convenience required init(username: String, password: String) {
-        let authStrategy = BasicAuthenticationStrategy(tokenURL: Constants.tokenURL,
-            serviceURL: Constants.serviceURL, username: username, password: password)
+        let authStrategy = BasicAuthenticationStrategy(
+            tokenURL: DialogConstants.tokenURL,
+            serviceURL: DialogConstants.serviceURL,
+            username: username,
+            password: password)
         self.init(authStrategy: authStrategy)
     }
 
@@ -63,17 +66,17 @@ public class Dialog: WatsonService {
      - parameter completionHandler: A function invoked with the response from Watson.
      */
     public func getContent(dialogID: String,
-        completionHandler: ([Node]?, NSError?) -> Void)
+        completionHandler: ([DialogNode]?, NSError?) -> Void)
     {
         let request = WatsonRequest(
             method: .GET,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.content(dialogID),
+            serviceURL: DialogConstants.serviceURL,
+            endpoint: DialogConstants.content(dialogID),
             authStrategy: authStrategy,
             accept: .JSON)
 
         gateway.request(request, serviceError: DialogError()) { data, error in
-            let nodes = Mapper<Node>().mapDataArray(data, keyPath: "items")
+            let nodes = Mapper<DialogNode>().mapDataArray(data, keyPath: "items")
             completionHandler(nodes, error)
         }
     }
@@ -85,13 +88,13 @@ public class Dialog: WatsonService {
      - parameter nodes: The specified nodes and updated content.
      - parameter completionHandler: A function invoked with the response from Watson.
      */
-    public func updateContent(dialogID: DialogID, nodes: [Node],
+    public func updateContent(dialogID: String, nodes: [DialogNode],
         completionHandler: NSError? -> Void)
     {
         let request = WatsonRequest(
             method: .PUT,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.content(dialogID),
+            serviceURL: DialogConstants.serviceURL,
+            endpoint: DialogConstants.content(dialogID),
             authStrategy: authStrategy,
             contentType: .JSON,
             messageBody: Mapper().toJSONData(nodes, header: "items"))
@@ -110,8 +113,8 @@ public class Dialog: WatsonService {
 
         let request = WatsonRequest(
             method: .GET,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.dialogs,
+            serviceURL: DialogConstants.serviceURL,
+            endpoint: DialogConstants.dialogs,
             authStrategy: authStrategy,
             accept: .JSON)
 
@@ -139,7 +142,7 @@ public class Dialog: WatsonService {
      - parameter completionHandler: A function invoked with the response from Watson.
      */
     public func createDialog(name: String, fileURL: NSURL,
-        completionHandler: (DialogID?, NSError?) -> Void)
+        completionHandler: (String?, NSError?) -> Void)
     {
         // TODO: Update this function after WatsonGateway supports uploads
         authStrategy.refreshToken() { error in
@@ -150,8 +153,8 @@ public class Dialog: WatsonService {
 
             let request = WatsonRequest(
                 method: .POST,
-                serviceURL: Constants.serviceURL,
-                endpoint: Constants.dialogs,
+                serviceURL: DialogConstants.serviceURL,
+                endpoint: DialogConstants.dialogs,
                 authStrategy: self.authStrategy,
                 accept: .JSON,
                 headerParams: headerParams)
@@ -193,12 +196,12 @@ public class Dialog: WatsonService {
      - parameter dialogID: The Dialog application identifier.
      - parameter completionHandler: A function invoked with the response from Watson.
      */
-    public func deleteDialog(dialogID: DialogID, completionHandler: NSError? -> Void) {
+    public func deleteDialog(dialogID: String, completionHandler: NSError? -> Void) {
 
         let request = WatsonRequest(
             method: .DELETE,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.dialogID(dialogID),
+            serviceURL: DialogConstants.serviceURL,
+            endpoint: DialogConstants.dialogID(dialogID),
             authStrategy: authStrategy)
 
         gateway.request(request, serviceError: DialogError()) { data, error in
@@ -215,7 +218,7 @@ public class Dialog: WatsonService {
             Dialog document XML format (.xml file).
      - parameter completionHandler: A function invoked with the response from Watson.
      */
-    public func getDialogFile(dialogID: DialogID, format: MediaType? = nil,
+    public func getDialogFile(dialogID: String, format: MediaType? = nil,
         completionHandler: (NSURL?, NSError?) -> Void)
     {
         // TODO: Update this function after WatsonGateway supports uploads
@@ -227,8 +230,8 @@ public class Dialog: WatsonService {
 
             let request = WatsonRequest(
                 method: .GET,
-                serviceURL: Constants.serviceURL,
-                endpoint: Constants.dialogID(dialogID),
+                serviceURL: DialogConstants.serviceURL,
+                endpoint: DialogConstants.dialogID(dialogID),
                 authStrategy: self.authStrategy,
                 accept: format,
                 headerParams: headerParams)
@@ -268,7 +271,7 @@ public class Dialog: WatsonService {
             or .xml for Watson Dialog document XML format.
      - parameter completionHandler: A function invoked with the response from Watson.
      */
-    public func updateDialog(dialogID: DialogID, fileURL: NSURL,
+    public func updateDialog(dialogID: String, fileURL: NSURL,
         fileType: MediaType, completionHandler: NSError? -> Void)
     {
         // TODO: Update this function after WatsonGateway supports uploads
@@ -280,8 +283,8 @@ public class Dialog: WatsonService {
 
             let request = WatsonRequest(
                 method: .PUT,
-                serviceURL: Constants.serviceURL,
-                endpoint: Constants.dialogID(dialogID),
+                serviceURL: DialogConstants.serviceURL,
+                endpoint: DialogConstants.dialogID(dialogID),
                 authStrategy: self.authStrategy,
                 contentType: fileType,
                 headerParams: headerParams)
@@ -309,9 +312,9 @@ public class Dialog: WatsonService {
      - parameter limit: The maximum number of conversations to retrieve (default: 10,000).
      - parameter completionHandler: A function invoked with the response from Watson.
      */
-    public func getConversation(dialogID: DialogID, dateFrom: NSDate,
+    public func getConversation(dialogID: String, dateFrom: NSDate,
         dateTo: NSDate, offset: Int? = nil, limit: Int? = nil,
-        completionHandler: ([Conversation]?, NSError?) -> Void)
+        completionHandler: ([DialogConversation]?, NSError?) -> Void)
     {
         let dateFromString = Dialog.formatter.stringFromDate(dateFrom)
         let dateToString = Dialog.formatter.stringFromDate(dateTo)
@@ -328,14 +331,14 @@ public class Dialog: WatsonService {
 
         let request = WatsonRequest(
             method: .GET,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.conversation(dialogID),
+            serviceURL: DialogConstants.serviceURL,
+            endpoint: DialogConstants.conversation(dialogID),
             authStrategy: authStrategy,
             accept: .JSON,
             urlParams: urlParams)
 
         gateway.request(request, serviceError: DialogError()) { data, error in
-            let conversations = Mapper<Conversation>().mapDataArray(data,
+            let conversations = Mapper<DialogConversation>().mapDataArray(data,
                 keyPath: "conversations")
             completionHandler(conversations, error)
         }
@@ -353,9 +356,9 @@ public class Dialog: WatsonService {
             is optional when conversationID is not specified.
      - parameter completionHandler: A function invoked with the response from Watson.
      */
-    public func converse(dialogID: DialogID, conversationID: Int? = nil,
+    public func converse(dialogID: String, conversationID: Int? = nil,
         clientID: Int? = nil, input: String? = nil,
-        completionHandler: (ConversationResponse?, NSError?) -> Void)
+        completionHandler: (DialogConversationResponse?, NSError?) -> Void)
     {
         var urlParams = [NSURLQueryItem]()
         if let conversationID = conversationID {
@@ -374,14 +377,14 @@ public class Dialog: WatsonService {
 
         let request = WatsonRequest(
             method: .POST,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.conversation(dialogID),
+            serviceURL: DialogConstants.serviceURL,
+            endpoint: DialogConstants.conversation(dialogID),
             authStrategy: authStrategy,
             accept: .JSON,
             urlParams: urlParams)
 
         gateway.request(request, serviceError: DialogError()) { data, error in
-            let conversationResponse = Mapper<ConversationResponse>().mapData(data)
+            let conversationResponse = Mapper<DialogConversationResponse>().mapData(data)
             completionHandler(conversationResponse, error)
         }
     }
@@ -397,8 +400,8 @@ public class Dialog: WatsonService {
             profile variables will be retrieved.
      - parameter completionHandler: A function invoked with the response from Watson.
      */
-    public func getProfile(dialogID: DialogID, clientID: Int, names: [String]? = nil,
-        completionHandler: ([Parameter]?, NSError?) -> Void)
+    public func getProfile(dialogID: String, clientID: Int, names: [String]? = nil,
+        completionHandler: ([DialogParameter]?, NSError?) -> Void)
     {
         var urlParams = [NSURLQueryItem]()
         urlParams.append(NSURLQueryItem(name: "client_id", value: "\(clientID)"))
@@ -410,14 +413,14 @@ public class Dialog: WatsonService {
 
         let request = WatsonRequest(
             method: .GET,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.profile(dialogID),
+            serviceURL: DialogConstants.serviceURL,
+            endpoint: DialogConstants.profile(dialogID),
             authStrategy: authStrategy,
             accept: .JSON,
             urlParams: urlParams)
 
         gateway.request(request, serviceError: DialogError()) { data, error in
-            let parameters = Mapper<Parameter>().mapDataArray(data,
+            let parameters = Mapper<DialogParameter>().mapDataArray(data,
                 keyPath: "name_values")
             completionHandler(parameters, error)
         }
@@ -433,15 +436,15 @@ public class Dialog: WatsonService {
             must already be explicitly defined in the Dialog application.
      - parameter completionHandler: A function invoked with the response from Watson.
      */
-    public func updateProfile(dialogID: DialogID, clientID: Int?,
+    public func updateProfile(dialogID: String, clientID: Int?,
         parameters: [String: String], completionHandler: NSError? -> Void)
     {
-        let profile = Profile(clientID: clientID, parameters: parameters)
+        let profile = DialogProfile(clientID: clientID, parameters: parameters)
 
         let request = WatsonRequest(
             method: .PUT,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.profile(dialogID),
+            serviceURL: DialogConstants.serviceURL,
+            endpoint: DialogConstants.profile(dialogID),
             authStrategy: authStrategy,
             messageBody: Mapper().toJSONData(profile))
 

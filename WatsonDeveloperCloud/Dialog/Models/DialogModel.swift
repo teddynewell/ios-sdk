@@ -16,58 +16,52 @@
 
 import Foundation
 import ObjectMapper
-
-extension Dialog {
     
-    /// A collection of Dialog models
-    internal struct DialogModelCollection: Mappable {
-        
-        /// The Dialog models
-        var dialogs: [DialogModel]?
+/// A collection of Dialog models
+struct DialogModelCollection: Mappable {
+    
+    /// The Dialog models
+    var dialogs: [DialogModel]?
 
-        /// Used internally to initialize a `DialogModelCollection` from JSON.
-        init?(_ map: Map) {}
+    /// Used internally to initialize a `DialogModelCollection` from JSON.
+    init?(_ map: Map) {}
 
-        /// Used internally to serialize and deserialize JSON.
-        mutating func mapping(map: Map) {
-            dialogs <- map["dialogs"]
-        }
+    /// Used internally to serialize and deserialize JSON.
+    mutating func mapping(map: Map) {
+        dialogs <- map["dialogs"]
     }
-    
-    /// A DialogID uniquely identifies a Dialog application
-    public typealias DialogID = String
-    
-    /// A Dialog model
-    public struct DialogModel: Mappable {
-        
-        /// The Dialog application identifier
-        public var dialogID: DialogID?
-        
-        /// The name of the Dialog application
-        public var name: String?
+}
 
-        /// Used internally to initialize a `DialogModel` from JSON.
-        public init?(_ map: Map) {}
+/// A Dialog model
+public struct DialogModel: Mappable {
+    
+    /// The Dialog application identifier
+    public var dialogID: String?
+    
+    /// The name of the Dialog application
+    public var name: String?
 
-        /// Used internally to serialize and deserialize JSON.
-        public mutating func mapping(map: Map) {
-            dialogID <- map["dialog_id"]
-            name     <- map["name"]
-        }
+    /// Used internally to initialize a `DialogModel` from JSON.
+    public init?(_ map: Map) {}
+
+    /// Used internally to serialize and deserialize JSON.
+    public mutating func mapping(map: Map) {
+        dialogID <- map["dialog_id"]
+        name     <- map["name"]
     }
+}
+
+/// A Dialog model identifier
+struct DialogIDModel: Mappable {
     
-    /// A Dialog model identifier
-    internal struct DialogIDModel: Mappable {
-        
-        /// The dialog identifier
-        var id: DialogID?
+    /// The dialog identifier
+    var id: String?
 
-        /// Used internally to initialize a `DialogIDModel` from JSON.
-        init?(_ map: Map) {}
+    /// Used internally to initialize a `DialogIDModel` from JSON.
+    init?(_ map: Map) {}
 
-        /// Used internally to serialize and deserialize JSON.
-        mutating func mapping(map: Map) {
-            id <- map["dialog_id"]
-        }
+    /// Used internally to serialize and deserialize JSON.
+    mutating func mapping(map: Map) {
+        id <- map["dialog_id"]
     }
 }
