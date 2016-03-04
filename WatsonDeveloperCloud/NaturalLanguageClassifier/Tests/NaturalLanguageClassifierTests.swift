@@ -27,7 +27,7 @@ class NaturalLanguageClassifierTests: XCTestCase {
     // a classifier that is already trained with the given weather data
     let trainedClassifierID = "A3FCCBx16-nlc-248"
     let trainedClassifierName = "iOS SDK Test Classifier"
-    let availableStatus = NaturalLanguageClassifier.Status.Available
+    let availableStatus = NLCStatus.Available
     
     // the classifier that will be created then deleted during tests
     var temporaryClassifierID: String!
