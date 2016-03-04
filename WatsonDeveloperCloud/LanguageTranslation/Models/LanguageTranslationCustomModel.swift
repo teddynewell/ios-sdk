@@ -16,21 +16,18 @@
 
 import Foundation
 import ObjectMapper
-
-extension LanguageTranslation {
     
-    /// A Language Translation custom model
-    internal struct CustomModel: Mappable {
-        
-        /// The base model that this translation model was trained on
-        var modelID: String?
+/// A Language Translation custom model
+public struct LanguageTranslationCustomModel: Mappable {
 
-        /// Used internally to initialize a `CustomModel` from JSON.
-        init?(_ map: Map) {}
+    /// The base model that this translation model was trained on
+    public var modelID: String?
 
-        /// Used internally to serialize and deserialize JSON.
-        mutating func mapping(map: Map) {
-            modelID <- map["model_id"]
-        }
+    /// Used internally to initialize a `CustomModel` from JSON.
+    public init?(_ map: Map) {}
+
+    /// Used internally to serialize and deserialize JSON.
+    public mutating func mapping(map: Map) {
+        modelID <- map["model_id"]
     }
 }

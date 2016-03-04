@@ -16,25 +16,22 @@
 
 import Foundation
 import ObjectMapper
-
-extension LanguageTranslation {
     
-    /// An identified language
-    public struct IdentifiedLanguage: Mappable {
-        
-        /// The language
-        public var language: String?
-        
-        /// The confidence
-        public var confidence: Double?
+/// An identified language
+public struct LanguageTranslationIdentifiedLanguage: Mappable {
+    
+    /// The language
+    public var language: String?
+    
+    /// The confidence
+    public var confidence: Double?
 
-        /// Used internally to initialize an `IdentifiedLanguage` from JSON.
-        public init?(_ map: Map) {}
+    /// Used internally to initialize an `IdentifiedLanguage` from JSON.
+    public init?(_ map: Map) {}
 
-        /// Used internally to serialize and deserialize JSON.
-        public mutating func mapping(map: Map) {
-            language    <- map["language"]
-            confidence  <- map["confidence"]
-        }
+    /// Used internally to serialize and deserialize JSON.
+    public mutating func mapping(map: Map) {
+        language    <- map["language"]
+        confidence  <- map["confidence"]
     }
 }

@@ -17,22 +17,32 @@
 import Foundation
 import ObjectMapper
     
-struct LanguageTranslationError: WatsonError {
-    var errorCode: Int!
-    var errorMessage: String!
+/// A translation request
+struct LanguageTranslationRequest: Mappable {
+    var modelID: String?
+    var source: String?
+    var target: String?
+    var text: [String]?
     
-    var nsError: NSError {
-        let domain = LanguageTranslationConstants.domain
-        let userInfo = [NSLocalizedDescriptionKey: errorMessage]
-        return NSError(domain: domain, code: errorCode, userInfo: userInfo)
+    init(text: [String], modelID: String) {
+        self.text = text
+        self.modelID = modelID
     }
     
-    init() {}
-    
+    init(text: [String], source: String, target: String) {
+        self.text = text
+        self.source = source
+        self.target = target
+    }
+
+    /// Used internally to initialize a `TranslateRequest` from JSON.
     init?(_ map: Map) {}
-    
+
+    /// Used internally to serialize and deserialize JSON.
     mutating func mapping(map: Map) {
-        errorCode    <- map["error_code"]
-        errorMessage <- map["error_message"]
+        modelID <- map["model_id"]
+        source  <- map["source"]
+        target  <- map["target"]
+        text    <- map["text"]
     }
 }

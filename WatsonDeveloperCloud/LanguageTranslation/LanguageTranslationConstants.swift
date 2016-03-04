@@ -15,21 +15,18 @@
  **/
 
 import Foundation
-
-extension LanguageTranslation {
     
-    internal struct Constants {
+struct LanguageTranslationConstants {
         
-        static let serviceURL = "https://gateway.watsonplatform.net/language-translation/api"
-        static let tokenURL = "https://gateway.watsonplatform.net/authorization/api/v1/token"
-        static let errorDomain = "com.watsonplatform.languagetranslation"
-        
-        static let identifiableLanguages = "/v2/identifiable_languages"
-        static let identify = "/v2/identify"
-        static let translate = "/v2/translate"
-        static let models = "/v2/models"
-        static func model(modelID: String) -> String {
-            return "/v2/models/\(modelID)"
-        }
+    static let serviceURL = "https://gateway.watsonplatform.net/language-translation/api"
+    static let tokenURL = "https://gateway.watsonplatform.net/authorization/api/v1/token"
+    static let domain = "com.watsonplatform.languagetranslation"
+    
+    static let identifiableLanguages = "/v2/identifiable_languages"
+    static let identify = "/v2/identify"
+    static let translate = "/v2/translate"
+    static let models = "/v2/models"
+    static func model(modelID: String) -> String {
+        return "/v2/models/\(modelID)"
     }
 }

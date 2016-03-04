@@ -35,8 +35,11 @@ public class LanguageTranslation: WatsonService {
 
     // TODO: comment this initializer
     public convenience required init(username: String, password: String) {
-        let authStrategy = BasicAuthenticationStrategy(tokenURL: Constants.tokenURL,
-            serviceURL: Constants.serviceURL, username: username, password: password)
+        let authStrategy = BasicAuthenticationStrategy(
+            tokenURL: LanguageTranslationConstants.tokenURL,
+            serviceURL: LanguageTranslationConstants.serviceURL,
+            username: username,
+            password: password)
         self.init(authStrategy: authStrategy)
     }
     
@@ -47,19 +50,20 @@ public class LanguageTranslation: WatsonService {
                                         identifiable languages
      */
     public func getIdentifiableLanguages(
-        completionHandler: ([IdentifiableLanguage]?, NSError?) -> Void) {
+        completionHandler: ([LanguageTranslationIdentifiableLanguage]?, NSError?) -> Void) {
         
         // construct request
         let request = WatsonRequest(
             method: .GET,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.identifiableLanguages,
+            serviceURL: LanguageTranslationConstants.serviceURL,
+            endpoint: LanguageTranslationConstants.identifiableLanguages,
             authStrategy: authStrategy,
             accept: .JSON)
         
         // execute request
         gateway.request(request, serviceError: LanguageTranslationError()) { data, error in
-            let languages = Mapper<IdentifiableLanguage>().mapDataArray(data, keyPath: "languages")
+            let languages = Mapper<LanguageTranslationIdentifiableLanguage>().mapDataArray(data,
+                keyPath: "languages")
             completionHandler(languages, error)
         }
     }
@@ -73,20 +77,21 @@ public class LanguageTranslation: WatsonService {
                                         confidence
      */
     public func identify(text: String,
-        completionHandler: ([IdentifiedLanguage]?, NSError?) -> Void) {
+        completionHandler: ([LanguageTranslationIdentifiedLanguage]?, NSError?) -> Void) {
             
         // construct request
         let request = WatsonRequest(
             method: .GET,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.identify,
+            serviceURL: LanguageTranslationConstants.serviceURL,
+            endpoint: LanguageTranslationConstants.identify,
             authStrategy: authStrategy,
             accept: .JSON,
             urlParams: [NSURLQueryItem(name: "text", value: text)])
         
         // execute request
         gateway.request(request, serviceError: LanguageTranslationError()) { data, error in
-            let languages = Mapper<IdentifiedLanguage>().mapDataArray(data, keyPath: "languages")
+            let languages = Mapper<LanguageTranslationIdentifiedLanguage>().mapDataArray(data,
+                keyPath: "languages")
             completionHandler(languages, error)
         }
     }
@@ -103,7 +108,7 @@ public class LanguageTranslation: WatsonService {
     public func translate(text: String, source: String, target: String,
         completionHandler: (String?, NSError?) -> Void) {
             
-        translate(TranslateRequest(text: [text], source: source, target: target)) {
+        translate(LanguageTranslationRequest(text: [text], source: source, target: target)) {
             text, error in
             guard let text = text else {
                 completionHandler(nil, error)
@@ -129,7 +134,7 @@ public class LanguageTranslation: WatsonService {
     public func translate(text: String, modelID: String,
         completionHandler: (String?, NSError?) -> Void) {
             
-        translate(TranslateRequest(text: [text], modelID: modelID)) {
+        translate(LanguageTranslationRequest(text: [text], modelID: modelID)) {
             text, error in
             guard let text = text else {
                 completionHandler(nil, error)
@@ -155,7 +160,7 @@ public class LanguageTranslation: WatsonService {
     public func translate(text: [String], source: String, target: String,
         completionHandler: ([String]?, NSError?) -> Void) {
         
-        translate(TranslateRequest(text: text, source: source, target: target),
+        translate(LanguageTranslationRequest(text: text, source: source, target: target),
             completionHandler: completionHandler)
     }
     
@@ -171,7 +176,7 @@ public class LanguageTranslation: WatsonService {
     public func translate(text: [String], modelID: String,
         completionHandler: ([String]?, NSError?) -> Void) {
         
-        translate(TranslateRequest(text: text, modelID: modelID),
+        translate(LanguageTranslationRequest(text: text, modelID: modelID),
             completionHandler: completionHandler)
     }
     
@@ -182,14 +187,14 @@ public class LanguageTranslation: WatsonService {
      - parameter completionHandler: The callback method that is invoked with the
                                         translated strings.
      */
-    private func translate(translateRequest: TranslateRequest,
+    private func translate(translateRequest: LanguageTranslationRequest,
         completionHandler: ([String]?, NSError?) -> Void) {
         
         // construct request
         let request = WatsonRequest(
             method: .POST,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.translate,
+            serviceURL: LanguageTranslationConstants.serviceURL,
+            endpoint: LanguageTranslationConstants.translate,
             authStrategy: authStrategy,
             accept: .JSON,
             contentType: .JSON,
@@ -197,7 +202,7 @@ public class LanguageTranslation: WatsonService {
         
         // execute request
         gateway.request(request, serviceError: LanguageTranslationError()) { data, error in
-            let translations = Mapper<TranslateResponse>().mapData(data)?.translationStrings
+            let translations = Mapper<LanguageTranslationResponse>().mapData(data)?.translationStrings
             completionHandler(translations, error)
         }
     }
@@ -210,9 +215,12 @@ public class LanguageTranslation: WatsonService {
      - parameter defaultModel: Valid values are leaving it unset, 'true' and 'false'. When 'true', it filters models to return the default model or models. When 'false' it returns the non-default model or models. If not set, all models (default and non-default) return.
      - parameter callback:     The callback method to invoke after the response is received
      */
-    public func getModels(source: String? = nil, target: String? = nil,
-        defaultModel: Bool? = nil, completionHandler: ([TranslationModel]?, NSError?) -> Void) {
-
+    public func getModels(
+        source: String? = nil,
+        target: String? = nil,
+        defaultModel: Bool? = nil,
+        completionHandler: ([LanguageTranslationModel]?, NSError?) -> Void)
+    {
         // construct url query parameters
         var urlParams = [NSURLQueryItem]()
         if let source = source {
@@ -228,15 +236,15 @@ public class LanguageTranslation: WatsonService {
         // construct request
         let request = WatsonRequest(
             method: .GET,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.models,
+            serviceURL: LanguageTranslationConstants.serviceURL,
+            endpoint: LanguageTranslationConstants.models,
             authStrategy: authStrategy,
             accept: .JSON,
             urlParams: urlParams)
             
         // execute request
         gateway.request(request, serviceError: LanguageTranslationError()) { data, error in
-            let models = Mapper<TranslationModel>().mapDataArray(data, keyPath: "models")
+            let models = Mapper<LanguageTranslationModel>().mapDataArray(data, keyPath: "models")
             completionHandler(models, error)
         }
     }
@@ -248,19 +256,19 @@ public class LanguageTranslation: WatsonService {
      - parameter completionHandler: The callback method to invoke after the response is received
      */
     public func getModel(modelID: String,
-        completionHandler: (TranslationModel?, NSError?) -> Void) {
+        completionHandler: (LanguageTranslationModel?, NSError?) -> Void) {
         
         // construct request
         let request = WatsonRequest(
             method: .GET,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.model(modelID),
+            serviceURL: LanguageTranslationConstants.serviceURL,
+            endpoint: LanguageTranslationConstants.model(modelID),
             authStrategy: authStrategy,
             accept: .JSON)
         
         // execute request
         gateway.request(request, serviceError: LanguageTranslationError()) { data, error in
-            let model = Mapper<TranslationModel>().mapData(data)
+            let model = Mapper<LanguageTranslationModel>().mapData(data)
             completionHandler(model, error)
         }
     }
@@ -273,8 +281,13 @@ public class LanguageTranslation: WatsonService {
      - parameter forcedGlossaryPath: (Required). A TMX file with your customizations. Anything specified in this file will completely overwrite the domain data translation.
      - parameter callback:           Returns the created model
      */
-    public func createModel(baseModelID: String, name: String? = nil, fileKey: String, fileURL: NSURL, completionHandler: (String?, NSError?) -> Void) {
-        
+    public func createModel(
+        baseModelID: String,
+        name: String? = nil,
+        fileKey: String,
+        fileURL: NSURL,
+        completionHandler: (String?, NSError?) -> Void)
+    {
         // force token to refresh
         // TODO: can remove this after its handled by WatsonGateway
         authStrategy.refreshToken() { error in
@@ -296,8 +309,8 @@ public class LanguageTranslation: WatsonService {
             // construct request
             let request = WatsonRequest(
                 method: .POST,
-                serviceURL: Constants.serviceURL,
-                endpoint: Constants.models,
+                serviceURL: LanguageTranslationConstants.serviceURL,
+                endpoint: LanguageTranslationConstants.models,
                 authStrategy: self.authStrategy,
                 accept: .JSON,
                 headerParams: headerParams,
@@ -314,9 +327,9 @@ public class LanguageTranslation: WatsonService {
                     case .Success(let upload, _, _):
                         // execute encoded request
                         upload.responseObject {
-                            (response: Response<CustomModel, NSError>) in
+                            (response: Response<LanguageTranslationCustomModel, NSError>) in
                             let unwrapID = {
-                                (customModel: CustomModel?, error: NSError?) in
+                                (customModel: LanguageTranslationCustomModel?, error: NSError?) in
                                 completionHandler(customModel?.modelID, error) }
                             print(response)
                             validate(response, serviceError: LanguageTranslationError(),
@@ -346,8 +359,8 @@ public class LanguageTranslation: WatsonService {
         // construct request
         let request = WatsonRequest(
             method: .DELETE,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.model(modelID),
+            serviceURL: LanguageTranslationConstants.serviceURL,
+            endpoint: LanguageTranslationConstants.model(modelID),
             authStrategy: authStrategy)
         
         // execute request
