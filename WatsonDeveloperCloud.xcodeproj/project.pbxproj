@@ -70,9 +70,9 @@
 		7A0F96C31C232B96004C01C0 /* LTRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F961A1C232B96004C01C0 /* LTRequest.swift */; };
 		7A0F96C41C232B96004C01C0 /* LTResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F961B1C232B96004C01C0 /* LTResponse.swift */; };
 		7A0F96C51C232B96004C01C0 /* LTModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F961C1C232B96004C01C0 /* LTModel.swift */; };
-		7A0F96C81C232B96004C01C0 /* Classification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96221C232B96004C01C0 /* Classification.swift */; };
-		7A0F96C91C232B96004C01C0 /* ClassifiedClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96231C232B96004C01C0 /* ClassifiedClass.swift */; };
-		7A0F96CA1C232B96004C01C0 /* Classifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96241C232B96004C01C0 /* Classifier.swift */; };
+		7A0F96C81C232B96004C01C0 /* NLCClassification.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96221C232B96004C01C0 /* NLCClassification.swift */; };
+		7A0F96C91C232B96004C01C0 /* NLCClassifiedClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96231C232B96004C01C0 /* NLCClassifiedClass.swift */; };
+		7A0F96CA1C232B96004C01C0 /* NLCClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96241C232B96004C01C0 /* NLCClassifier.swift */; };
 		7A0F96CB1C232B96004C01C0 /* NaturalLanguageClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96251C232B96004C01C0 /* NaturalLanguageClassifier.swift */; };
 		7A0F96CC1C232B96004C01C0 /* NLCConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96261C232B96004C01C0 /* NLCConstants.swift */; };
 		7A0F96CD1C232B96004C01C0 /* NLCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96271C232B96004C01C0 /* NLCError.swift */; };
@@ -285,9 +285,9 @@
 		7A0F961C1C232B96004C01C0 /* LTModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LTModel.swift; sourceTree = "<group>"; };
 		7A0F961E1C232B96004C01C0 /* glossary.tmx */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; path = glossary.tmx; sourceTree = "<group>"; };
 		7A0F961F1C232B96004C01C0 /* LanguageTranslationTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LanguageTranslationTests.swift; sourceTree = "<group>"; };
-		7A0F96221C232B96004C01C0 /* Classification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classification.swift; sourceTree = "<group>"; };
-		7A0F96231C232B96004C01C0 /* ClassifiedClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ClassifiedClass.swift; sourceTree = "<group>"; };
-		7A0F96241C232B96004C01C0 /* Classifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Classifier.swift; sourceTree = "<group>"; };
+		7A0F96221C232B96004C01C0 /* NLCClassification.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLCClassification.swift; sourceTree = "<group>"; };
+		7A0F96231C232B96004C01C0 /* NLCClassifiedClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLCClassifiedClass.swift; sourceTree = "<group>"; };
+		7A0F96241C232B96004C01C0 /* NLCClassifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLCClassifier.swift; sourceTree = "<group>"; };
 		7A0F96251C232B96004C01C0 /* NaturalLanguageClassifier.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaturalLanguageClassifier.swift; sourceTree = "<group>"; };
 		7A0F96261C232B96004C01C0 /* NLCConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLCConstants.swift; sourceTree = "<group>"; };
 		7A0F96271C232B96004C01C0 /* NLCError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NLCError.swift; sourceTree = "<group>"; };
@@ -642,9 +642,9 @@
 		7A0F96211C232B96004C01C0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7A0F96221C232B96004C01C0 /* Classification.swift */,
-				7A0F96231C232B96004C01C0 /* ClassifiedClass.swift */,
-				7A0F96241C232B96004C01C0 /* Classifier.swift */,
+				7A0F96221C232B96004C01C0 /* NLCClassification.swift */,
+				7A0F96231C232B96004C01C0 /* NLCClassifiedClass.swift */,
+				7A0F96241C232B96004C01C0 /* NLCClassifier.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1075,7 +1075,7 @@
 				7A0F96AB1C232B96004C01C0 /* ImageKeyWords.swift in Sources */,
 				7A0F96831C232B96004C01C0 /* AlchemyLanguageConstants.swift in Sources */,
 				7A0F96861C232B96004C01C0 /* AlchemyLanguageGenericModel.swift in Sources */,
-				7A0F96C81C232B96004C01C0 /* Classification.swift in Sources */,
+				7A0F96C81C232B96004C01C0 /* NLCClassification.swift in Sources */,
 				7A0F96AD1C232B96004C01C0 /* ImageURL.swift in Sources */,
 				7A0F96C21C232B96004C01C0 /* LTIdentifiedLanguage.swift in Sources */,
 				7A0F96A01C232B96004C01C0 /* Taxonomies.swift in Sources */,
@@ -1092,7 +1092,7 @@
 				7A0F96B91C232B96004C01C0 /* DialogNode.swift in Sources */,
 				7A0F96BA1C232B96004C01C0 /* DialogProfile.swift in Sources */,
 				7A0F96891C232B96004C01C0 /* Concept.swift in Sources */,
-				7A0F96CA1C232B96004C01C0 /* Classifier.swift in Sources */,
+				7A0F96CA1C232B96004C01C0 /* NLCClassifier.swift in Sources */,
 				7A0F97041C232B96004C01C0 /* NSError.swift in Sources */,
 				7A521F581C857329005EFD34 /* SpeechToTextState.swift in Sources */,
 				7A0F96FF1C232B96004C01C0 /* APIKeyAuthenticationStrategy.swift in Sources */,
@@ -1141,7 +1141,7 @@
 				7AEAAFAC1C57E57800A8D202 /* SpeechToTextResultWrapper.swift in Sources */,
 				7A0F96FD1C232B96004C01C0 /* AlchemyRequest.swift in Sources */,
 				7A0F96AA1C232B96004C01C0 /* ImageKeyWord.swift in Sources */,
-				7A0F96C91C232B96004C01C0 /* ClassifiedClass.swift in Sources */,
+				7A0F96C91C232B96004C01C0 /* NLCClassifiedClass.swift in Sources */,
 				7A0F96971C232B96004C01C0 /* Language.swift in Sources */,
 				7A0F96CD1C232B96004C01C0 /* NLCError.swift in Sources */,
 			);

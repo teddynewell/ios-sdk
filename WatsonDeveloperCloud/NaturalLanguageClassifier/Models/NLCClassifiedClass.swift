@@ -16,26 +16,22 @@
 
 import Foundation
 import ObjectMapper
-    
-struct NLCError: WatsonError {
-    var description: String!
-    var error: String!
-    var code: Int!
-    
-    var nsError: NSError {
-        let domain = NLCConstants.errorDomain
-        let userInfo = [NSLocalizedDescriptionKey: error,
-                        NSLocalizedRecoverySuggestionErrorKey: description]
-        return NSError(domain: domain, code: code, userInfo: userInfo)
-    }
-    
-    init() {}
-    
-    init?(_ map: Map) {}
-    
-    mutating func mapping(map: Map) {
-        description <- map["description"]
-        error       <- map["error"]
-        code        <- map["code"]
+
+public struct NLCClassifiedClass: Mappable {
+
+    /// Class label
+    public var name: String?
+
+    /// A decimal percentage that represents Watson's with this class classification.
+    /// (Higher values represent higher confidences.)
+    public var confidence: Double?
+
+    /// Used internally to initialize a `ClassifiedClass` from JSON.
+    public init?(_ map: Map) {}
+
+    /// Used internally to serialize and deserialize JSON.
+    public mutating func mapping(map: Map) {
+        name        <- map["class_name"]
+        confidence  <- (map["confidence"])
     }
 }

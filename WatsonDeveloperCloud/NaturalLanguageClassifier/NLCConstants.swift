@@ -15,22 +15,18 @@
  **/
 
 import Foundation
-
-extension NaturalLanguageClassifier {
     
-    internal struct Constants {
-        
-        static let serviceURL = "https://gateway.watsonplatform.net/natural-language-classifier/api"
-        static let tokenURL = "https://gateway.watsonplatform.net/authorization/api/v1/token"
-        static let errorDomain = "com.watsonplatform.naturallanguageclassifier"
-        
-        static let classifiers = "/v1/classifiers"
-        static func classify(classifierId: String) -> String {
-            return "/v1/classifiers/\(classifierId)/classify"
-        }
-        static func classifier(classifierId: String) -> String {
-            return "/v1/classifiers/\(classifierId)"
-        }
+struct NLCConstants {
+    
+    static let serviceURL = "https://gateway.watsonplatform.net/natural-language-classifier/api"
+    static let tokenURL = "https://gateway.watsonplatform.net/authorization/api/v1/token"
+    static let errorDomain = "com.watsonplatform.naturallanguageclassifier"
+    
+    static let classifiers = "/v1/classifiers"
+    static func classify(classifierId: String) -> String {
+        return "/v1/classifiers/\(classifierId)/classify"
+    }
+    static func classifier(classifierId: String) -> String {
+        return "/v1/classifiers/\(classifierId)"
     }
 }
-

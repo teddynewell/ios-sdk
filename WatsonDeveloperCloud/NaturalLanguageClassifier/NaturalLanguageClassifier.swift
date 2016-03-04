@@ -34,8 +34,11 @@ public class NaturalLanguageClassifier: WatsonService {
 
     // TODO: comment this initializer
     public convenience required init(username: String, password: String) {
-        let authStrategy = BasicAuthenticationStrategy(tokenURL: Constants.tokenURL,
-            serviceURL: Constants.serviceURL, username: username, password: password)
+        let authStrategy = BasicAuthenticationStrategy(
+            tokenURL: NLCConstants.tokenURL,
+            serviceURL: NLCConstants.serviceURL,
+            username: username,
+            password: password)
         self.init(authStrategy: authStrategy)
     }
     
@@ -45,19 +48,19 @@ public class NaturalLanguageClassifier: WatsonService {
      
      - parameter completionHandler: Callback with [Classifier]?
      */
-    public func getClassifiers(completionHandler: ([Classifier]?, NSError?) -> Void) {
+    public func getClassifiers(completionHandler: ([NLCClassifier]?, NSError?) -> Void) {
         
         // construct request
         let request = WatsonRequest(
             method: .GET,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.classifiers,
+            serviceURL: NLCConstants.serviceURL,
+            endpoint: NLCConstants.classifiers,
             authStrategy: authStrategy,
             accept: .JSON)
         
         // execute request
         gateway.request(request, serviceError: NLCError()) { data, error in
-            let classifiers = Mapper<Classifier>().mapDataArray(data, keyPath: "classifiers")
+            let classifiers = Mapper<NLCClassifier>().mapDataArray(data, keyPath: "classifiers")
             completionHandler(classifiers, error)
         }
     }
@@ -71,20 +74,20 @@ public class NaturalLanguageClassifier: WatsonService {
      - parameter completionHandler: Callback with Classification?
      */
     public func classify(classifierId: String, text: String,
-        completionHandler: (Classification?, NSError?) -> Void) {
+        completionHandler: (NLCClassification?, NSError?) -> Void) {
         
         // construct request
         let request = WatsonRequest(
             method: .GET,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.classify(classifierId),
+            serviceURL: NLCConstants.serviceURL,
+            endpoint: NLCConstants.classify(classifierId),
             authStrategy: authStrategy,
             accept: .JSON,
             urlParams: [NSURLQueryItem(name: "text", value: text)])
             
         // execute request
         gateway.request(request, serviceError: NLCError()) { data, error in
-            let classification = Mapper<Classification>().mapData(data)
+            let classification = Mapper<NLCClassification>().mapData(data)
             completionHandler(classification, error)
         }
     }
@@ -96,19 +99,19 @@ public class NaturalLanguageClassifier: WatsonService {
      - parameter completionHandler: Callback with Classifer?
      */
     public func getClassifier(classifierId: String,
-        completionHandler: (Classifier?, NSError?) -> Void) {
+        completionHandler: (NLCClassifier?, NSError?) -> Void) {
             
         // construct request
         let request = WatsonRequest(
             method: .GET,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.classifier(classifierId),
+            serviceURL: NLCConstants.serviceURL,
+            endpoint: NLCConstants.classifier(classifierId),
             authStrategy: authStrategy,
             accept: .JSON)
         
         // execute request
         gateway.request(request, serviceError: NLCError()) { data, error in
-            let classifier = Mapper<Classifier>().mapData(data)
+            let classifier = Mapper<NLCClassifier>().mapData(data)
             completionHandler(classifier, error)
         }
     }
@@ -124,8 +127,8 @@ public class NaturalLanguageClassifier: WatsonService {
         // construct request
         let request = WatsonRequest(
             method: .DELETE,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.classifier(classifierId),
+            serviceURL: NLCConstants.serviceURL,
+            endpoint: NLCConstants.classifier(classifierId),
             authStrategy: authStrategy)
         
         // execute request
@@ -146,7 +149,7 @@ public class NaturalLanguageClassifier: WatsonService {
      - parameter completionHandler: Callback with Classifier?
      */
     public func createClassifier(trainerMetaURL: NSURL, trainerURL: NSURL,
-        completionHandler: (Classifier?, NSError?) -> Void) {
+        completionHandler: (NLCClassifier?, NSError?) -> Void) {
         
         // force token to refresh
         // TODO: can remove this after its handled by WatsonGateway
@@ -162,8 +165,8 @@ public class NaturalLanguageClassifier: WatsonService {
             // construct request
             let request = WatsonRequest(
                 method: .POST,
-                serviceURL: Constants.serviceURL,
-                endpoint: Constants.classifiers,
+                serviceURL: NLCConstants.serviceURL,
+                endpoint: NLCConstants.classifiers,
                 authStrategy: self.authStrategy,
                 accept: .JSON,
                 headerParams: headerParams)
@@ -181,7 +184,7 @@ public class NaturalLanguageClassifier: WatsonService {
                     case .Success(let upload, _, _):
                         // execute encoded request
                         upload.responseObject {
-                            (response: Response<Classifier, NSError>) in
+                            (response: Response<NLCClassifier, NSError>) in
                             validate(response, serviceError: NLCError(),
                                 completionHandler: completionHandler)
                         }
