@@ -293,7 +293,7 @@ guard let fileURL = bundle.URLForResource("filename", withExtension: "wav") else
 }
 
 let stt = SpeechToText(username: "your-username-here", password: "your-password-here")
-let settings = SpeechToTextSettings(contentType: .WAV)
+let settings = STTSettings(contentType: .WAV)
 stt.transcribe(fileURL, settings: settings) { results in
 	if let transcription = results.last?.alternatives.last?.transcript {
    		print(transcription)
@@ -314,7 +314,7 @@ Audio can also be streamed from the microphone to the Speech to Text service for
 ```swift
 let stt = SpeechToText(username: "your-username-here", password: "your-password-here")
 
-var settings = SpeechToTextSettings(contentType: .L16(rate: 44100, channels: 1))
+var settings = STTSettings(contentType: .L16(rate: 44100, channels: 1))
 settings.continuous = true
 settings.interimResults = true
 
@@ -374,7 +374,7 @@ if captureSession.canAddInput(microphoneInput) {
 	captureSession.addInput(microphoneInput)
 }
 
-var settings = SpeechToTextSettings(contentType: .L16(rate: 44100, channels: 1))
+var settings = STTSettings(contentType: .L16(rate: 44100, channels: 1))
 settings.continuous = true
 settings.interimResults = true
 
