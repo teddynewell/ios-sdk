@@ -17,17 +17,17 @@
 import Foundation
 import ObjectMapper
 
-/** The state of the Speech to Text service. */
-struct SpeechToTextState: Mappable {
+/** An error produced by the Speech to Text service. */
+struct STTError: Mappable {
 
-    /// The state of the Speech to Text service.
-    var state: String!
+    /// A description of the error that occurred.
+    var error: String!
 
-    /// Used internally to initialize a `SpeechToTextState` from JSON.
+    /// Used internally to initialize a `SpeechToTextError` from JSON.
     init?(_ map: Map) { }
 
     /// Used internally to serialize and deserialize JSON.
     mutating func mapping(map: Map) {
-        state <- map["state"]
+        error <- map["error"]
     }
 }

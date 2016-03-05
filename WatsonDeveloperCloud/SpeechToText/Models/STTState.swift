@@ -17,21 +17,17 @@
 import Foundation
 import ObjectMapper
 
-/** Alternative word hypotheses from Speech to Text for a word in the audio input. */
-public struct SpeechToTextWordAlternativeResult: Mappable {
+/** The state of the Speech to Text service. */
+struct STTState: Mappable {
 
-    /// The confidence score of the alternative word hypothesis, between 0 and 1.
-    public var confidence: Double!
+    /// The state of the Speech to Text service.
+    var state: String!
 
-    /// The alternative word hypothesis for a word in the audio input.
-    public var word: String!
-
-    /// Used internally to initialize a `SpeechToTextWordAlternativeResult` from JSON.
-    public init?(_ map: Map) { }
+    /// Used internally to initialize a `SpeechToTextState` from JSON.
+    init?(_ map: Map) { }
 
     /// Used internally to serialize and deserialize JSON.
-    public mutating func mapping(map: Map) {
-        confidence <- map["confidence"]
-        word       <- map["word"]
+    mutating func mapping(map: Map) {
+        state <- map["state"]
     }
 }

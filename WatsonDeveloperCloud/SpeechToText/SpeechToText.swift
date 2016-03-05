@@ -51,8 +51,8 @@ public class SpeechToText: WatsonService {
      */
     public convenience required init(username: String, password: String) {
         let authStrategy = BasicAuthenticationStrategy(
-            tokenURL: SpeechToTextConstants.tokenURL,
-            serviceURL: SpeechToTextConstants.serviceURL,
+            tokenURL: STTConstants.tokenURL,
+            serviceURL: STTConstants.serviceURL,
             username: username,
             password: password)
         self.init(authStrategy: authStrategy)
@@ -69,13 +69,13 @@ public class SpeechToText: WatsonService {
      */
     public func transcribe(
         file: NSURL,
-        settings: SpeechToTextSettings,
+        settings: STTSettings,
         failure: (NSError -> Void)? = nil,
-        success: [SpeechToTextResult] -> Void)
+        success: [STTResult] -> Void)
     {
         guard let audio = NSData(contentsOfURL: file) else {
             let description = "Could not load audio data from \(file)."
-            let error = createError(SpeechToTextConstants.domain, description: description)
+            let error = createError(STTConstants.domain, description: description)
             failure?(error)
             return
         }
@@ -94,18 +94,18 @@ public class SpeechToText: WatsonService {
      */
     public func transcribe(
         audio: NSData,
-        settings: SpeechToTextSettings,
+        settings: STTSettings,
         failure: (NSError -> Void)? = nil,
-        success: [SpeechToTextResult] -> Void)
+        success: [STTResult] -> Void)
     {
-        guard let socket = SpeechToTextWebSocket(
+        guard let socket = STTWebSocket(
             authStrategy: authStrategy,
             settings: settings,
             failure: failure,
             success: success) else { return }
 
         guard let start = settings.toJSONString(failure),
-              let stop = SpeechToTextStop().toJSONString(failure) else { return }
+              let stop = STTStop().toJSONString(failure) else { return }
 
         socket.writeString(start)
         socket.writeData(audio)
@@ -124,12 +124,12 @@ public class SpeechToText: WatsonService {
      - returns: A function that, when executed, stops streaming audio to Speech to Text.
      */
     public func transcribe(
-        settings: SpeechToTextSettings,
+        settings: STTSettings,
         failure: (NSError -> Void)? = nil,
-        success: [SpeechToTextResult] -> Void)
+        success: [STTResult] -> Void)
         -> StopStreaming
     {
-        guard let audioStreamer = SpeechToTextAudioStreamer(
+        guard let audioStreamer = STTAudioStreamer(
             authStrategy: authStrategy,
             settings: settings,
             failure: failure,
@@ -154,12 +154,12 @@ public class SpeechToText: WatsonService {
         when set as the output of an `AVCaptureSession`.
      */
     public func createTranscriptionOutput(
-        settings: SpeechToTextSettings,
+        settings: STTSettings,
         failure: (NSError -> Void)? = nil,
-        success: [SpeechToTextResult] -> Void)
+        success: [STTResult] -> Void)
         -> AVCaptureAudioDataOutput?
     {
-        guard let audioStreamer = SpeechToTextAudioStreamer(
+        guard let audioStreamer = STTAudioStreamer(
             authStrategy: authStrategy,
             settings: settings,
             failure: failure,

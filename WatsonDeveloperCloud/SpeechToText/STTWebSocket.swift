@@ -17,12 +17,12 @@
 import Foundation
 
 /** Abstracts the WebSockets connection to the Watson Speech to Text service. */
-class SpeechToTextWebSocket {
+class STTWebSocket {
 
     private let socket: WatsonWebSocket
-    private var results: [SpeechToTextResult]
+    private var results: [STTResult]
     private let failure: (NSError -> Void)?
-    private let success: [SpeechToTextResult] -> Void
+    private let success: [STTResult] -> Void
 
     /**
      Create a `SpeechToTextWebSocket` object to communicate with Speech to Text.
@@ -40,11 +40,11 @@ class SpeechToTextWebSocket {
      */
     init?(
         authStrategy: AuthenticationStrategy,
-        settings: SpeechToTextSettings,
+        settings: STTSettings,
         failure: (NSError -> Void)? = nil,
-        success: [SpeechToTextResult] -> Void)
+        success: [STTResult] -> Void)
     {
-        guard let url = NSURL(string: SpeechToTextConstants.websocketsURL(settings)) else {
+        guard let url = NSURL(string: STTConstants.websocketsURL(settings)) else {
             // A bug in the Swift compiler requires us to set all properties before returning nil
             // This bug is fixed in Swift 2.2, so we can remove this code when Xcode is updated
             self.socket = WatsonWebSocket(authStrategy: authStrategy,
@@ -56,7 +56,7 @@ class SpeechToTextWebSocket {
         }
 
         self.socket = WatsonWebSocket(authStrategy: authStrategy, url: url)
-        self.results = [SpeechToTextResult]()
+        self.results = [STTResult]()
         self.failure = failure
         self.success = success
 
@@ -112,9 +112,9 @@ class SpeechToTextWebSocket {
      - parameter text: The text payload from Speech to Text.
      */
     private func onText(text: String) {
-        guard let response = SpeechToTextGenericResponse.parseResponse(text) else {
+        guard let response = STTGenericResponse.parseResponse(text) else {
             let description = "Could not serialize a generic text response to an object."
-            let error = createError(SpeechToTextConstants.domain, description: description)
+            let error = createError(STTConstants.domain, description: description)
             failure?(error)
             return
         }
@@ -151,7 +151,7 @@ class SpeechToTextWebSocket {
 
      - parameter state: The state of the Speech to Text recognition request.
      */
-    private func onState(state: SpeechToTextState) {
+    private func onState(state: STTState) {
         return
     }
 
@@ -161,7 +161,7 @@ class SpeechToTextWebSocket {
      - parameter wrapper: A `SpeechToTextResultWrapper` that encapsulates the new or updated
         transcriptions along with state information to update the internal `results` array.
      */
-    private func onResults(wrapper: SpeechToTextResultWrapper) {
+    private func onResults(wrapper: STTResultWrapper) {
         updateResultsArray(wrapper)
         success(results)
     }
@@ -172,7 +172,7 @@ class SpeechToTextWebSocket {
      - parameter wrapper: A `SpeechToTextResultWrapper` that encapsulates the new or updated
         transcriptions along with state information to update the internal `results` array.
      */
-    private func updateResultsArray(wrapper: SpeechToTextResultWrapper) {
+    private func updateResultsArray(wrapper: STTResultWrapper) {
         var localIndex = wrapper.resultIndex
         var wrapperIndex = 0
         while localIndex < results.count {
@@ -191,8 +191,8 @@ class SpeechToTextWebSocket {
 
      - parameter error: The error that occurred.
      */
-    private func onServiceError(error: SpeechToTextError) {
-        let error = createError(SpeechToTextConstants.domain, description: error.error)
+    private func onServiceError(error: STTError) {
+        let error = createError(STTConstants.domain, description: error.error)
         failure?(error)
     }
 }

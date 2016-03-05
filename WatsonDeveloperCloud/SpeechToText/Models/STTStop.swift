@@ -18,7 +18,7 @@ import Foundation
 import ObjectMapper
 
 /** Signals the end of an audio transmission to Speech to Text. */
-struct SpeechToTextStop: WatsonRequestModel {
+struct STTStop: WatsonRequestModel {
 
     /// The action to perform. Must be `stop` to end the request.
     private let action = "stop"

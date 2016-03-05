@@ -18,7 +18,7 @@ import Foundation
 import ObjectMapper
 
 /** A wrapper object that contains results from a Speech to Text recognition request. */
-struct SpeechToTextResultWrapper: Mappable {
+struct STTResultWrapper: Mappable {
 
     /// Index indicating change point in the results array.
     /// (See description of `results` array for more information.)
@@ -30,7 +30,7 @@ struct SpeechToTextResultWrapper: Mappable {
     /// periodically sends "updates" to the result list, with the `resultIndex` set to the
     /// lowest index in the array that has changed. `resultIndex` always points to the slot
     /// just after the most recent final result.
-    var results: [SpeechToTextResult]!
+    var results: [STTResult]!
 
     /// Used internally to initialize a `SpeechToTextResultWrapper` from JSON.
     init?(_ map: Map) { }

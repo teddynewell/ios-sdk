@@ -18,10 +18,10 @@ import Foundation
 import ObjectMapper
 
 /** A generic response from Speech to Text. */
-enum SpeechToTextGenericResponse {
-    case State(SpeechToTextState)
-    case Results(SpeechToTextResultWrapper)
-    case Error(SpeechToTextError)
+enum STTGenericResponse {
+    case State(STTState)
+    case Results(STTResultWrapper)
+    case Error(STTError)
 
     /**
      Parse a text response from the Speech to Text service.
@@ -30,7 +30,7 @@ enum SpeechToTextGenericResponse {
 
      - returns: An object mapped from the JSON text, or nil if the response could not be parsed.
      */
-    static func parseResponse(text: String) -> SpeechToTextGenericResponse? {
+    static func parseResponse(text: String) -> STTGenericResponse? {
         guard let data = text.dataUsingEncoding(NSUTF8StringEncoding) else {
             return nil
         }
@@ -41,21 +41,21 @@ enum SpeechToTextGenericResponse {
         }
 
         if response["state"] != nil {
-            guard let state = Mapper<SpeechToTextState>().mapData(data) else {
+            guard let state = Mapper<STTState>().mapData(data) else {
                 return nil
             }
             return .State(state)
         }
 
         if response["results"] != nil {
-            guard let results = Mapper<SpeechToTextResultWrapper>().mapData(data) else {
+            guard let results = Mapper<STTResultWrapper>().mapData(data) else {
                 return nil
             }
             return .Results(results)
         }
 
         if response["error"] != nil {
-            guard let error = Mapper<SpeechToTextError>().mapData(data) else {
+            guard let error = Mapper<STTError>().mapData(data) else {
                 return nil
             }
             return .Error(error)

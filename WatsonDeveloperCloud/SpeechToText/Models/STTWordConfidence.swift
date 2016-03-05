@@ -18,7 +18,7 @@ import Foundation
 import ObjectMapper
 
 /** The confidence of a word in a Speech to Text transcription. */
-public struct SpeechToTextWordConfidence {
+public struct STTWordConfidence {
 
     /// A particular word from the transcription.
     public var word: String!
@@ -28,17 +28,17 @@ public struct SpeechToTextWordConfidence {
     
 }
 
-/** An ObjectMapper transformation for `SpeechToTextWordConfidence`. */
-struct SpeechToTextWordConfidenceTransform: TransformType {
-    typealias Object = SpeechToTextWordConfidence
+/** An ObjectMapper transformation for `STTWordConfidence`. */
+struct STTWordConfidenceTransform: TransformType {
+    typealias Object = STTWordConfidence
     typealias JSON = [AnyObject]
 
     /**
-     Transform JSON to a `SpeechToTextWordConfidence`.
+     Transform JSON to a `STTWordConfidence`.
 
      - parameter value: The JSON object to transform.
      
-     - returns: A `SpeechToTextWordConfidence` object.
+     - returns: A `STTWordConfidence` object.
      */
     func transformFromJSON(value: AnyObject?) -> Object? {
         guard let array = value as? [AnyObject],
@@ -48,13 +48,13 @@ struct SpeechToTextWordConfidenceTransform: TransformType {
             return nil
         }
 
-        return SpeechToTextWordConfidence(word: word, confidence: confidence)
+        return STTWordConfidence(word: word, confidence: confidence)
     }
 
     /**
-     Transform a `SpeechToTextWordConfidence` to JSON.
+     Transform a `STTWordConfidence` to JSON.
 
-     - parameter value: The `SpeechToTextWordConfidence` object to transform.
+     - parameter value: The `STTWordConfidence` object to transform.
 
      - returns: A JSON object.
      */

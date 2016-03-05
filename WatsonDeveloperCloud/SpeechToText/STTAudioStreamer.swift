@@ -18,16 +18,16 @@ import Foundation
 import AVFoundation
 
 /** Stream microphone audio to Speech to Text. */
-class SpeechToTextAudioStreamer: NSObject, AVCaptureAudioDataOutputSampleBufferDelegate {
+class STTAudioStreamer: NSObject, AVCaptureAudioDataOutputSampleBufferDelegate {
 
-    private var settings: SpeechToTextSettings
+    private var settings: STTSettings
     private var failure: (NSError -> Void)?
-    private let success: [SpeechToTextResult] -> Void
-    private var socket: SpeechToTextWebSocket?
+    private let success: [STTResult] -> Void
+    private var socket: STTWebSocket?
     private var captureSession: AVCaptureSession?
 
     /**
-     Create a `SpeechToTextAudioStreamer` to stream microphone audio to Speech to Text.
+     Create a `STTAudioStreamer` to stream microphone audio to Speech to Text.
 
      - parameter authStrategy: An `AuthenticationStrategy` that defines how to authenticate
         with the Watson Developer Cloud's Speech to Text service. The `AuthenticationStrategy`
@@ -38,14 +38,14 @@ class SpeechToTextAudioStreamer: NSObject, AVCaptureAudioDataOutputSampleBufferD
      - parameter success: A function executed with all transcription results whenever
         a final or interim transcription is received.
      
-     - returns: A `SpeechToTextAudioStreamer` object that can stream microphone audio to
+     - returns: A `STTAudioStreamer` object that can stream microphone audio to
         Speech to Text.
     */
     init?(
         authStrategy: AuthenticationStrategy,
-        settings: SpeechToTextSettings,
+        settings: STTSettings,
         failure: (NSError -> Void)? = nil,
-        success: [SpeechToTextResult] -> Void)
+        success: [STTResult] -> Void)
     {
         self.settings = settings
         self.success = success
@@ -58,7 +58,7 @@ class SpeechToTextAudioStreamer: NSObject, AVCaptureAudioDataOutputSampleBufferD
             failure?(error)
         }
 
-        guard let socket = SpeechToTextWebSocket(
+        guard let socket = STTWebSocket(
             authStrategy: authStrategy,
             settings: settings,
             failure: failure,
@@ -88,7 +88,7 @@ class SpeechToTextAudioStreamer: NSObject, AVCaptureAudioDataOutputSampleBufferD
         captureSession = AVCaptureSession()
         guard let captureSession = captureSession else {
             let description = "Unable to create an AVCaptureSession."
-            let error = createError(SpeechToTextConstants.domain, description: description)
+            let error = createError(STTConstants.domain, description: description)
             failure?(error)
             return false
         }
@@ -96,7 +96,7 @@ class SpeechToTextAudioStreamer: NSObject, AVCaptureAudioDataOutputSampleBufferD
         let microphoneInput = createMicrophoneInput()
         guard captureSession.canAddInput(microphoneInput) else {
             let description = "Unable to add the microphone as a capture session input."
-            let error = createError(SpeechToTextConstants.domain, description: description)
+            let error = createError(STTConstants.domain, description: description)
             failure?(error)
             return false
         }
@@ -104,7 +104,7 @@ class SpeechToTextAudioStreamer: NSObject, AVCaptureAudioDataOutputSampleBufferD
         let transcriptionOutput = createTranscriptionOutput()
         guard captureSession.canAddOutput(transcriptionOutput) else {
             let description = "Unable to add transcription as a capture session output."
-            let error = createError(SpeechToTextConstants.domain, description: description)
+            let error = createError(STTConstants.domain, description: description)
             failure?(error)
             return false
         }
@@ -122,7 +122,7 @@ class SpeechToTextAudioStreamer: NSObject, AVCaptureAudioDataOutputSampleBufferD
     func stopStreaming() {
         captureSession?.stopRunning()
         captureSession = nil
-        if let stop = SpeechToTextStop().toJSONString(failure) {
+        if let stop = STTStop().toJSONString(failure) {
             socket?.writeString(stop)
             socket?.disconnect()
         }
@@ -142,7 +142,7 @@ class SpeechToTextAudioStreamer: NSObject, AVCaptureAudioDataOutputSampleBufferD
     {
         guard CMSampleBufferDataIsReady(sampleBuffer) else {
             let description = "Microphone audio buffer ignored because it was not ready."
-            let error = createError(SpeechToTextConstants.domain, description: description)
+            let error = createError(STTConstants.domain, description: description)
             failure?(error)
             return
         }
@@ -181,7 +181,7 @@ class SpeechToTextAudioStreamer: NSObject, AVCaptureAudioDataOutputSampleBufferD
         let microphoneDevice = AVCaptureDevice.defaultDeviceWithMediaType(AVMediaTypeAudio)
         guard let microphoneInput = try? AVCaptureDeviceInput(device: microphoneDevice) else {
             let description = "Unable to access the microphone."
-            let error = createError(SpeechToTextConstants.domain, description: description)
+            let error = createError(STTConstants.domain, description: description)
             failure?(error)
             return nil
         }

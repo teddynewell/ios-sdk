@@ -16,14 +16,14 @@
 
 import Foundation
 
-struct SpeechToTextConstants {
+struct STTConstants {
 
     static let serviceURL = "https://stream.watsonplatform.net/speech-to-text/api"
     static let tokenURL = "https://stream.watsonplatform.net/authorization/api/v1/token"
     static let websocketsURL = "wss://stream.watsonplatform.net/speech-to-text/api/v1/recognize"
     static let domain = "swift.SpeechToText"
 
-    static func websocketsURL(settings: SpeechToTextSettings) -> String {
+    static func websocketsURL(settings: STTSettings) -> String {
         var url = websocketsURL
         if let model = settings.model {
             url = url + "?model=" + model

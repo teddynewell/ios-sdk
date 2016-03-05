@@ -18,7 +18,7 @@ import Foundation
 import ObjectMapper
 
 /** A transcription alternative produced by Speech to Text. */
-public struct SpeechToTextTranscription: Mappable {
+public struct STTTranscription: Mappable {
 
     /// A transcript of the utterance.
     public var transcript: String!
@@ -28,11 +28,11 @@ public struct SpeechToTextTranscription: Mappable {
     public var confidence: Double?
 
     /// Timestamps for each word of the transcript.
-    public var timestamps: [SpeechToTextWordTimestamp]?
+    public var timestamps: [STTWordTimestamp]?
 
     /// Confidence scores for each word of the transcript, between 0 and 1. Available only
     /// for the best alternative and only in results marked as final.
-    public var wordConfidence: [SpeechToTextWordConfidence]?
+    public var wordConfidence: [STTWordConfidence]?
 
     /// Used internally to initialize a `SpeechToTextTranscription` from JSON.
     public init?(_ map: Map) { }
@@ -41,7 +41,7 @@ public struct SpeechToTextTranscription: Mappable {
     public mutating func mapping(map: Map) {
         transcript     <-  map["transcript"]
         confidence     <-  map["confidence"]
-        timestamps     <- (map["timestamps"], SpeechToTextWordTimestampTransform())
-        wordConfidence <- (map["word_confidence"], SpeechToTextWordConfidenceTransform())
+        timestamps     <- (map["timestamps"], STTWordTimestampTransform())
+        wordConfidence <- (map["word_confidence"], STTWordConfidenceTransform())
     }
 }

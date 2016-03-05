@@ -23,7 +23,7 @@ import Foundation
  Visit https://ibm.biz/BdHCrX for more information about the Speech to Text service's
  parameters.
  */
-public struct SpeechToTextSettings: WatsonRequestModel {
+public struct STTSettings: WatsonRequestModel {
 
     /***** URL query parameters for WebSockets connection request. *****/
 

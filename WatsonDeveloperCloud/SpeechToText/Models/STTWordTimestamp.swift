@@ -18,7 +18,7 @@ import Foundation
 import ObjectMapper
 
 /** The timestamp of a word in a Speech to Text transcription. */
-public struct SpeechToTextWordTimestamp {
+public struct STTWordTimestamp {
 
     /// A particular word from the transcription.
     public var word: String!
@@ -32,16 +32,16 @@ public struct SpeechToTextWordTimestamp {
 }
 
 /** An ObjectMapper transformation for `SpeechToTextWordTimestamp`. */
-struct SpeechToTextWordTimestampTransform: TransformType {
-    typealias Object = SpeechToTextWordTimestamp
+struct STTWordTimestampTransform: TransformType {
+    typealias Object = STTWordTimestamp
     typealias JSON = [AnyObject]
 
     /**
-     Transform JSON to a `SpeechToTextWordTimestamp`.
+     Transform JSON to a `STTWordTimestamp`.
 
      - parameter value: The JSON object to transform.
 
-     - returns: A `SpeechToTextWordTimestamp` object.
+     - returns: A `STTWordTimestamp` object.
      */
     func transformFromJSON(value: AnyObject?) -> Object? {
         guard let array = value as? [AnyObject],
@@ -52,13 +52,13 @@ struct SpeechToTextWordTimestampTransform: TransformType {
             return nil
         }
 
-        return SpeechToTextWordTimestamp(word: word, startTime: startTime, endTime: endTime)
+        return STTWordTimestamp(word: word, startTime: startTime, endTime: endTime)
     }
 
     /**
-     Transform a `SpeechToTextWordTimestamp` to JSON.
+     Transform a `STTWordTimestamp` to JSON.
 
-     - parameter value: The `SpeechToTextWordTimestamp` object to transform.
+     - parameter value: The `STTWordTimestamp` object to transform.
 
      - returns: A JSON object.
      */

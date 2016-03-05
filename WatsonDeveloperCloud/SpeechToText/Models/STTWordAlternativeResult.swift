@@ -17,17 +17,21 @@
 import Foundation
 import ObjectMapper
 
-/** An error produced by the Speech to Text service. */
-struct SpeechToTextError: Mappable {
+/** Alternative word hypotheses from Speech to Text for a word in the audio input. */
+public struct STTWordAlternativeResult: Mappable {
 
-    /// A description of the error that occurred.
-    var error: String!
+    /// The confidence score of the alternative word hypothesis, between 0 and 1.
+    public var confidence: Double!
 
-    /// Used internally to initialize a `SpeechToTextError` from JSON.
-    init?(_ map: Map) { }
+    /// The alternative word hypothesis for a word in the audio input.
+    public var word: String!
+
+    /// Used internally to initialize a `SpeechToTextWordAlternativeResult` from JSON.
+    public init?(_ map: Map) { }
 
     /// Used internally to serialize and deserialize JSON.
-    mutating func mapping(map: Map) {
-        error <- map["error"]
+    public mutating func mapping(map: Map) {
+        confidence <- map["confidence"]
+        word       <- map["word"]
     }
 }

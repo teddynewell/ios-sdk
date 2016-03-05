@@ -18,22 +18,22 @@ import Foundation
 import ObjectMapper
 
 /** A result from a Speech to Text recognition request. */
-public struct SpeechToTextResult: Mappable {
+public struct STTResult: Mappable {
 
     /// If `true`, then the transcription result for this
     /// utterance is final and will not be updated further.
     public var final: Bool!
 
     /// Alternative transcription results.
-    public var alternatives: [SpeechToTextTranscription]!
+    public var alternatives: [STTTranscription]!
 
     /// A dictionary of spotted keywords and their associated matches. A keyword will have
     /// no associated matches if it was not found within the audio input or the threshold
     /// was set too high.
-    public var keywordResults: [String: [SpeechToTextKeywordResult]]?
+    public var keywordResults: [String: [STTKeywordResult]]?
 
     /// A list of acoustically similar alternatives for words of the input audio.
-    public var wordAlternatives: [SpeechToTextWordAlternativeResults]?
+    public var wordAlternatives: [STTWordAlternativeResults]?
 
     /// Used internally to initialize a `SpeechToTextResult` from JSON.
     public init?(_ map: Map) { }
