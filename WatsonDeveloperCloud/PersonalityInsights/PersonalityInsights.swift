@@ -37,8 +37,11 @@ public class PersonalityInsights: WatsonService {
 
     // TODO: comment this initializer
     public convenience required init(username: String, password: String) {
-        let authStrategy = BasicAuthenticationStrategy(tokenURL: Constants.tokenURL,
-            serviceURL: Constants.serviceURL, username: username, password: password)
+        let authStrategy = BasicAuthenticationStrategy(
+            tokenURL: PIConstants.tokenURL,
+            serviceURL: PIConstants.serviceURL,
+            username: username,
+            password: password)
         self.init(authStrategy: authStrategy)
     }
     
@@ -62,7 +65,7 @@ public class PersonalityInsights: WatsonService {
         acceptLanguage: String? = nil,
         contentLanguage: String? = nil,
         includeRaw: Bool? = nil,
-        completionHandler: (Profile?, NSError?) -> Void) {
+        completionHandler: (PIProfile?, NSError?) -> Void) {
         
         // construct url query parameters
         var urlParams = [NSURLQueryItem]()
@@ -82,8 +85,8 @@ public class PersonalityInsights: WatsonService {
         // construct request
         let request = WatsonRequest(
             method: .POST,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.profile,
+            serviceURL: PIConstants.serviceURL,
+            endpoint: PIConstants.profile,
             authStrategy: authStrategy,
             accept: .JSON,
             contentType: .Plain,
@@ -92,8 +95,8 @@ public class PersonalityInsights: WatsonService {
             messageBody: text.dataUsingEncoding(NSUTF8StringEncoding))
         
         // execute request
-        gateway.request(request, serviceError: PersonalityInsightsError()) { data, error in
-            let profile = Mapper<Profile>().mapData(data)
+        gateway.request(request, serviceError: PIError()) { data, error in
+            let profile = Mapper<PIProfile>().mapData(data)
             completionHandler(profile, error)
         }
     }
@@ -114,11 +117,11 @@ public class PersonalityInsights: WatsonService {
         - completionHandler: A function invoked with the response from Watson.
      */
     public func getProfile(
-        contentItems: [ContentItem],
+        contentItems: [PIContentItem],
         acceptLanguage: String? = nil,
         contentLanguage: String? = nil,
         includeRaw: Bool? = nil,
-        completionHandler: (Profile?, NSError?) -> Void) {
+        completionHandler: (PIProfile?, NSError?) -> Void) {
             
         // construct url query parameters
         var urlParams = [NSURLQueryItem]()
@@ -138,8 +141,8 @@ public class PersonalityInsights: WatsonService {
         // construct request
         let request = WatsonRequest(
             method: .POST,
-            serviceURL: Constants.serviceURL,
-            endpoint: Constants.profile,
+            serviceURL: PIConstants.serviceURL,
+            endpoint: PIConstants.profile,
             authStrategy: authStrategy,
             accept: .JSON,
             contentType: .JSON,
@@ -148,8 +151,8 @@ public class PersonalityInsights: WatsonService {
             messageBody: Mapper().toJSONData(contentItems, header: "contentItems"))
         
         // execute request
-        gateway.request(request, serviceError: PersonalityInsightsError()) { data, error in
-            let profile = Mapper<Profile>().mapData(data)
+        gateway.request(request, serviceError: PIError()) { data, error in
+            let profile = Mapper<PIProfile>().mapData(data)
             completionHandler(profile, error)
         }
     }

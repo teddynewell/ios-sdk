@@ -76,12 +76,12 @@
 		7A0F96CB1C232B96004C01C0 /* NaturalLanguageClassifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96251C232B96004C01C0 /* NaturalLanguageClassifier.swift */; };
 		7A0F96CC1C232B96004C01C0 /* NLCConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96261C232B96004C01C0 /* NLCConstants.swift */; };
 		7A0F96CD1C232B96004C01C0 /* NLCError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96271C232B96004C01C0 /* NLCError.swift */; };
-		7A0F96D21C232B96004C01C0 /* ContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F962F1C232B96004C01C0 /* ContentItem.swift */; };
-		7A0F96D31C232B96004C01C0 /* Profile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96301C232B96004C01C0 /* Profile.swift */; };
-		7A0F96D41C232B96004C01C0 /* Trait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96311C232B96004C01C0 /* Trait.swift */; };
+		7A0F96D21C232B96004C01C0 /* PIContentItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F962F1C232B96004C01C0 /* PIContentItem.swift */; };
+		7A0F96D31C232B96004C01C0 /* PIProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96301C232B96004C01C0 /* PIProfile.swift */; };
+		7A0F96D41C232B96004C01C0 /* PITrait.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96311C232B96004C01C0 /* PITrait.swift */; };
 		7A0F96D51C232B96004C01C0 /* PersonalityInsights.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96321C232B96004C01C0 /* PersonalityInsights.swift */; };
-		7A0F96D61C232B96004C01C0 /* PersonalityInsightsConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96331C232B96004C01C0 /* PersonalityInsightsConstants.swift */; };
-		7A0F96D71C232B96004C01C0 /* PersonalityInsightsError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96341C232B96004C01C0 /* PersonalityInsightsError.swift */; };
+		7A0F96D61C232B96004C01C0 /* PIConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96331C232B96004C01C0 /* PIConstants.swift */; };
+		7A0F96D71C232B96004C01C0 /* PIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A0F96341C232B96004C01C0 /* PIError.swift */; };
 		7A0F96E81C232B96004C01C0 /* libogg.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0F964B1C232B96004C01C0 /* libogg.a */; };
 		7A0F96E91C232B96004C01C0 /* libopus.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A0F964C1C232B96004C01C0 /* libopus.a */; };
 		7A0F96EA1C232B96004C01C0 /* ogg.h in Headers */ = {isa = PBXBuildFile; fileRef = 7A0F964E1C232B96004C01C0 /* ogg.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -295,12 +295,12 @@
 		7A0F962A1C232B96004C01C0 /* NaturalLanguageClassifierTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NaturalLanguageClassifierTests.swift; sourceTree = "<group>"; };
 		7A0F962B1C232B96004C01C0 /* training_meta.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = training_meta.txt; sourceTree = "<group>"; };
 		7A0F962C1C232B96004C01C0 /* weather_data_train.csv */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = weather_data_train.csv; sourceTree = "<group>"; };
-		7A0F962F1C232B96004C01C0 /* ContentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContentItem.swift; sourceTree = "<group>"; };
-		7A0F96301C232B96004C01C0 /* Profile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Profile.swift; sourceTree = "<group>"; };
-		7A0F96311C232B96004C01C0 /* Trait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Trait.swift; sourceTree = "<group>"; };
+		7A0F962F1C232B96004C01C0 /* PIContentItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIContentItem.swift; sourceTree = "<group>"; };
+		7A0F96301C232B96004C01C0 /* PIProfile.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIProfile.swift; sourceTree = "<group>"; };
+		7A0F96311C232B96004C01C0 /* PITrait.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PITrait.swift; sourceTree = "<group>"; };
 		7A0F96321C232B96004C01C0 /* PersonalityInsights.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalityInsights.swift; sourceTree = "<group>"; };
-		7A0F96331C232B96004C01C0 /* PersonalityInsightsConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalityInsightsConstants.swift; sourceTree = "<group>"; };
-		7A0F96341C232B96004C01C0 /* PersonalityInsightsError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalityInsightsError.swift; sourceTree = "<group>"; };
+		7A0F96331C232B96004C01C0 /* PIConstants.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIConstants.swift; sourceTree = "<group>"; };
+		7A0F96341C232B96004C01C0 /* PIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PIError.swift; sourceTree = "<group>"; };
 		7A0F96361C232B96004C01C0 /* KennedySpeech.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = KennedySpeech.txt; sourceTree = "<group>"; };
 		7A0F96371C232B96004C01C0 /* MobyDickIntro.txt */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = MobyDickIntro.txt; sourceTree = "<group>"; };
 		7A0F96381C232B96004C01C0 /* PersonalityInsightsTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PersonalityInsightsTests.swift; sourceTree = "<group>"; };
@@ -665,8 +665,8 @@
 			children = (
 				7A0F962E1C232B96004C01C0 /* Models */,
 				7A0F96321C232B96004C01C0 /* PersonalityInsights.swift */,
-				7A0F96331C232B96004C01C0 /* PersonalityInsightsConstants.swift */,
-				7A0F96341C232B96004C01C0 /* PersonalityInsightsError.swift */,
+				7A0F96331C232B96004C01C0 /* PIConstants.swift */,
+				7A0F96341C232B96004C01C0 /* PIError.swift */,
 				7A0F96351C232B96004C01C0 /* Tests */,
 			);
 			name = PersonalityInsights;
@@ -676,9 +676,9 @@
 		7A0F962E1C232B96004C01C0 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7A0F962F1C232B96004C01C0 /* ContentItem.swift */,
-				7A0F96301C232B96004C01C0 /* Profile.swift */,
-				7A0F96311C232B96004C01C0 /* Trait.swift */,
+				7A0F962F1C232B96004C01C0 /* PIContentItem.swift */,
+				7A0F96301C232B96004C01C0 /* PIProfile.swift */,
+				7A0F96311C232B96004C01C0 /* PITrait.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -1071,7 +1071,7 @@
 				7A0F96B51C232B96004C01C0 /* DialogConversation.swift in Sources */,
 				7A0F96921C232B96004C01C0 /* Feed.swift in Sources */,
 				7A0F96EC1C232B96004C01C0 /* OggHelper.m in Sources */,
-				7A0F96D31C232B96004C01C0 /* Profile.swift in Sources */,
+				7A0F96D31C232B96004C01C0 /* PIProfile.swift in Sources */,
 				7A0F96AB1C232B96004C01C0 /* ImageKeyWords.swift in Sources */,
 				7A0F96831C232B96004C01C0 /* AlchemyLanguageConstants.swift in Sources */,
 				7A0F96861C232B96004C01C0 /* AlchemyLanguageGenericModel.swift in Sources */,
@@ -1107,7 +1107,7 @@
 				7A0F970C1C232B96004C01C0 /* Log.swift in Sources */,
 				7ACB0D4C1C878D5400861CCC /* SpeechToTextWordAlternativeResult.swift in Sources */,
 				7A19DC931C597B260082ED38 /* SpeechToTextConstants.swift in Sources */,
-				7A0F96D71C232B96004C01C0 /* PersonalityInsightsError.swift in Sources */,
+				7A0F96D71C232B96004C01C0 /* PIError.swift in Sources */,
 				7A0F97151C232B96004C01C0 /* WatsonService.swift in Sources */,
 				7A0F970D1C232B96004C01C0 /* MediaType.swift in Sources */,
 				7A0F96981C232B96004C01C0 /* Microformat.swift in Sources */,
@@ -1116,8 +1116,8 @@
 				7A0F97011C232B96004C01C0 /* BasicAuthenticationStrategy.swift in Sources */,
 				7A0F96F71C232B96004C01C0 /* Voice.swift in Sources */,
 				7A00FDAB1C587D310082E742 /* SpeechToTextSettings.swift in Sources */,
-				7A0F96D61C232B96004C01C0 /* PersonalityInsightsConstants.swift in Sources */,
 				7AAD77591C87982400983861 /* SpeechToTextWebSocket.swift in Sources */,
+				7A0F96D61C232B96004C01C0 /* PIConstants.swift in Sources */,
 				7A0F96881C232B96004C01C0 /* CombinedResults.swift in Sources */,
 				7A0F96C01C232B96004C01C0 /* LTCustomModel.swift in Sources */,
 				7A0F96841C232B96004C01C0 /* AlchemyLanguageParametersProtocol.swift in Sources */,
@@ -1126,7 +1126,7 @@
 				7A0F96C41C232B96004C01C0 /* LTResponse.swift in Sources */,
 				7A0F96A81C232B96004C01C0 /* ImageFace.swift in Sources */,
 				7A0F96C51C232B96004C01C0 /* LTModel.swift in Sources */,
-				7A0F96D21C232B96004C01C0 /* ContentItem.swift in Sources */,
+				7A0F96D21C232B96004C01C0 /* PIContentItem.swift in Sources */,
 				7A0F96B41C232B96004C01C0 /* DialogError.swift in Sources */,
 				7A0F96B61C232B96004C01C0 /* DialogConversationResponse.swift in Sources */,
 				7A0F96F01C232B96004C01C0 /* opus_header.c in Sources */,
@@ -1136,7 +1136,7 @@
 				7A0F96C31C232B96004C01C0 /* LTRequest.swift in Sources */,
 				7A0F96941C232B96004C01C0 /* Keyword.swift in Sources */,
 				7A521F5A1C857361005EFD34 /* SpeechToTextError.swift in Sources */,
-				7A0F96D41C232B96004C01C0 /* Trait.swift in Sources */,
+				7A0F96D41C232B96004C01C0 /* PITrait.swift in Sources */,
 				7AEAAFA91C57C85500A8D202 /* SpeechToText.swift in Sources */,
 				7AEAAFAC1C57E57800A8D202 /* SpeechToTextResultWrapper.swift in Sources */,
 				7A0F96FD1C232B96004C01C0 /* AlchemyRequest.swift in Sources */,
