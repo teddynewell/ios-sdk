@@ -123,7 +123,7 @@ class PersonalityInsightsTests: XCTestCase {
         let expectation = expectationWithDescription(description)
         
         // define content item
-        let contentItem = PersonalityInsights.ContentItem(
+        let contentItem = PIContentItem(
             ID: "245160944223793152",
             userID: "Bob",
             sourceID: "Twitter",
