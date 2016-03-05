@@ -91,7 +91,7 @@ class SpeechToTextTests: XCTestCase {
             XCTFail("An error occurred: \(error)")
         }
 
-        let settings = SpeechToTextSettings(contentType: format)
+        let settings = STTSettings(contentType: format)
         service.transcribe(file, settings: settings, failure: failure) { results in
             for result in results {
                 XCTAssert(result.final == true)
@@ -139,7 +139,7 @@ class SpeechToTextTests: XCTestCase {
             XCTFail("An error occurred: \(error)")
         }
 
-        let settings = SpeechToTextSettings(contentType: format)
+        let settings = STTSettings(contentType: format)
         service.transcribe(audio, settings: settings, failure: failure) { results in
             for result in results {
                 XCTAssert(result.final == true)
@@ -170,7 +170,7 @@ class SpeechToTextTests: XCTestCase {
             XCTFail("An error occurred: \(error)")
         }
 
-        var settings = SpeechToTextSettings(contentType: format)
+        var settings = STTSettings(contentType: format)
         settings.model = "en-US_BroadbandModel"
         settings.learningOptOut = true
         settings.continuous = true
