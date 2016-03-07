@@ -72,8 +72,6 @@ class AuthenticationTests: XCTestCase {
                 XCTAssertNotNil(fbAuthentication.token)
                 XCTAssertNil(error)
             
-                Log.sharedLogger.info("Received a Watson token \(fbAuthentication.token)")
-            
                 facebookExpectation.fulfill()
             
         }
@@ -119,8 +117,6 @@ class AuthenticationTests: XCTestCase {
             
             XCTAssertNil(fbAuthentication.token)
             XCTAssertNotNil(error)
-            
-            Log.sharedLogger.info("Received a Watson token \(fbAuthentication.token)")
             
             facebookNegativeExpectation.fulfill()
             
